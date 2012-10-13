@@ -110,115 +110,6 @@ Es sollen alle Lösungen zu folgender Differentialgleichung bestimmt werden:
 	\od[2] yx + 4y = x^2 + 5 \cos\del{2x}
 \]
 
-\subsubsection{eigene Interpretation von „Variiation der Konstanten“}
-
-\newcommand\ex{\exp\del{2ix}}
-
-Ich beginne damit, die homogene Differentialgleichung zu lösen. Diese ist
-einfach mit einem Exponentialansatz gelöst. Dabei ist $\mathcal L$ die Menge
-der Linearkombinationen aller angegebenen Vektoren der Menge.
-\[
-	y_c(x) = \mathcal L \del{\set{\ex, \exp\del{-2ix}}}
-\]
-
-Nun muss ich noch eine partikuläre Lösung bestimmen. Dazu wähle ich den Ansatz
-der Variiation der Konstanten. Meine partikuläre Lösung ist $y_p = c(x) \ex$.
-Nun muss ich „nur“ noch $c(x)$ bestimmen. Dafür bestimme ich die zweite
-Ableitung von $y_p$ (mit Produktregel nach der ersten Ableitung):
-\[
-	y_p'' := \od[2] yx = c'' \ex + 4 c'i \ex - 4 c \ex
-\]
-
-Diese partikuläre Lösung setze ich jetzt in die Differentialgleichung ein und
-erhalte nach einigen Vereinfachungen und Umstellen nach den $c$:
-\[
-	\del{c'' + 4c'i} = \del{x^2 + 5 \cos\del{2x}} \exp\del{-2ix}
-\]
-
-An dieser Stelle betrachte ich nur noch den Imaginärteil der Gleichung, da ich
-davon ausgehe, dass $\forall x \colon c(x) \in \mathbb R$ gilt. Die Gleichung
-wird also zu:
-\[
-	c' = \frac14 \del{x^2 + 5 \cos\del{2x}} \sin\del{-2x}
-\]
-
-Dies muss ich nun auf beiden Seiten nach $x$ integrieren, damit ich $c$
-erhalte. Dabei muss ich mehrfach partielle Integration anwenden und erhalte
-schließlich:
-\[
-	c = \frac 18 \del{\del{x^2 - \frac 12} \cos(2x) - 5 - x \sin(2x) + \frac 52
-	\sin^2(2x)}
-\]
-
-Die allgemeine Lösung dieser Differentialgleichung ist dann:
-\[
-	y(x) = \del{\frac 18 \del{\del{x^2 - \frac 12} \cos(2x) - 5 - x \sin(2x) +
-	\frac 52 \sin^2(2x)} + c_1} \ex + c_2 \exp\del{-2ix}
-\]
-
-Muss man hier die komplexe Exponentialfunktion in Sinus und Kosinus umwandeln?
-
-\subsubsection{Methode aus Buch, komplexer Ansatz}
-
-Dieser Ansatz stammt aus \cite[Seite 181]{heuser-dgl}.
-
-Ich beginne damit, die homogene Differentialgleichung zu lösen. Diese ist
-einfach mit einem Exponentialansatz gelöst. Die Integralbasis $B$ für die
-homogene Gleichung ist:
-\[
-	B = \set{\ex, \exp\del{-2ix}}
-\]
-
-Nun muss ich noch eine partikuläre Lösung bestimmen. Dazu wähle ich den Ansatz
-der Variiation der Konstanten. Die Funktionen in der Basis bezeichne ich mit
-$U_1$ und $u_2$. Das Gleichungssystem ist:
-\begin{align*}
-	\dot c_1 u_1 + \dot c_2 u_2 &= 0 \\
-	\dot c_1 \dot u_1 + \dot c_2 \dot u_2 &= x^2 + 5 \cos(2x)
-\end{align*}
-
-Dort setze ich die beiden Basisfunktionen ein und löse mit dem Gaußalgorithmus:
-\[
-	\begin{pmatrix}
-		\exp(2ix) & \exp(-2ix) & 0 \\
-		2i \exp(2ix) & -2i \exp(-2ix) & x^2 + 5 \cos(2x)
-	\end{pmatrix}
-	\leadsto
-	\begin{pmatrix}
-		0 & \exp(-2ix) & - \frac1{4i} \del{ x^2 + 5 \cos(2x)} \\
-		\exp(2ix) & 0 & \frac1{4i} \del{ x^2 + 5 \cos(2x)}
-	\end{pmatrix}
-\]
-
-Jetzt integriere ich nach $x$ um $c_1$ zu erhalten:
-\begin{align*}
-	\dot c_1 \exp(2ix) &= \frac1{4i} \del{ x^2 + 5 \cos(2x)} \\
-	\dot c_1 &= \frac1{4i} \exp(-2ix) \del{ x^2 + 5 \cos(2x)} \\
-	c_1 &= \frac1{4i} \int \dif x \exp(-2ix) \del{ x^2 + 5 \cos(2x)} \\
-	\intertext{
-		Dieses Integral kann ich so lösen, allerdings erhalte ich dann eine
-		komplexe Funktion. Da alle Koeffizienten real sind, gehe ich davon aus,
-		dass hier am Ende nur der Realteil der Funktion interessant ist. Durch
-		das $\frac 1i$ muss ich den Imaginärteil des Integrals betrachten, das
-		ist $i \sin(-2x)$ der Exponentialfunktion.
-	}
-	c_1 &= \frac14 \int \dif x \sin(-2x) \del{ x^2 + 5 \cos(2x)} \\
-	\intertext{Dieses Integral lässt sich durch (mehrfache) partielle Integration lösen. Ich erhalte:}
-	c_1 &= \frac 1{16} \del{\del{-1+2x^2} \cos(2x) + 5 \cos^2(2x) - 2x \sin(2x)}
-\end{align*}
-
-Da der Sinus punktsymmetrisch ist, wird das gleiche Ergebnis auch für $c_2$
-herauskommen. Das Minus auf der rechten Seite wird gerade durch das Minus im
-Exponenten der Exponentialfunktion ausgeglichen. Es läuft auf das gleiche
-Integral heraus.
-
-Dann ist meine partikuläre Lösung:
-\[
-	y_p(x) =  \frac 1{16} \del{\del{-1+2x^2} \cos(2x) + 5 \cos^2(2x) - 2x \sin(2x)} \del{\exp(2ix) + \exp(-2ix)}
-\]
-
-\subsubsection{Methode aus Buch, realer Ansatz}
-
 Dieser Ansatz stammt aus \cite[Seite 181]{heuser-dgl}.
 
 Ich beginne damit, die homogene Differentialgleichung zu lösen. Diese ist
@@ -315,8 +206,6 @@ Oder mit allem eingesetzt:
 	&\quad + \del{\frac{1}{16} \left(2 \left(2 x^2-1\right) \sin (2 x)+20
    x+5 \sin (4 x)+4 x \cos (2 x)\right) + c_4} \sin(2x)
 \end{align*}
-
-\subsubsection{Mathematica}
 
 Laut \textit{Mathematica} ist die Lösung zu dieser
 Differentialgleichung:
