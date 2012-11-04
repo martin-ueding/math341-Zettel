@@ -1,0 +1,270 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\documentclass[11pt, ngerman, fleqn]{article}
+
+\usepackage[a4paper, left=3cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[activate]{pdfcprot}
+\usepackage[cdot, squaren]{SIunits}
+\usepackage[iso]{isodate}
+\usepackage[parfill]{parskip}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{color}
+\usepackage{commath}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{tikz}
+
+\usepackage[charter, greekuppercase=italicized]{mathdesign}
+
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+
+\hypersetup{
+	breaklinks=false,
+	citecolor=darkgreen,
+	colorlinks=true,
+	linkcolor=black,
+	menucolor=black,
+	urlcolor=darkblue,
+}
+
+\setlength{\columnsep}{2cm}
+
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\asinh}{arsinh}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\diam}{diam}
+
+\newcommand{\dalambert}{\mathop{{}\Box}\nolimits}
+\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\emesswert}{\del{\messwert \pm \messwert}}
+\newcommand{\e}[1]{\cdot 10^{#1}}
+\newcommand{\fehlt}{\textcolor{red}{Hier fehlen noch Inhalte.}}
+\newcommand{\half}{\frac 12}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\laplace}{\mathop{{}\Deltaup}\nolimits}
+\newcommand{\messwert}{\textcolor{blue}{\square}}
+\newcommand{\punkte}{\textcolor{white}{xxxxx}}
+\newcommand{\tens}[1]{\boldsymbol{#1}}
+\newcommand{\vnabla}{\vec \nabla}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{4}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Ueding, Manz, Lemmer}}
+\fancyfoot[R]{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\setcounter{section}{0}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}} \and Paul Manz \and Lino Lemmer}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c}
+		Aufgabe & \ref{1} & \ref{2} & \ref{3} & $\sum$   \\
+		\hline
+		Punkte & \punkte / 8 & \punkte / 2 & \punkte / 8 & \punkte / 18
+	\end{tabular}
+\end{table}
+
+Ich schreibe wieder $\ddot w := \pd[2] wt$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                    RAWA                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{RAWA}
+\label{1}
+
+Als Ansatz benute ich $u(x, y, t) = v(x, y) w(t)$. Dies setze ich in die Differentialgleichung ein:
+\[
+	- \dpd[2] vx w - \dpd[2] vy w + \frac{1}{c^2} v \ddot w = 0
+\]
+
+Teilen durch $vw$ ergibt:
+\[
+	\underbrace{- \frac 1v \dpd[2] vx - \frac 1w \dpd[2] vy}_{=: -\alpha} + \underbrace{\frac{1}{c^2} \frac 1w \ddot w}_{=: \alpha} = 0
+\]
+
+Daraus folgen die zwei Gleichungen, die unabhängig sind:
+\[
+	v \alpha = \dpd[2] vx + \dpd[2] vy
+	\quad \wedge \quad
+	\alpha c^2 w = \ddot w
+\]
+
+Daraus folgt für die Integralbasis für $w$:
+\[
+	B_w = \set{
+		\cos\del{\alpha c^2 t}, \sin\del{\alpha c^2 t}
+	}
+\]
+
+Für $v$ setze ich nun $GH$ ein und erhalte:
+\[
+	\frac{G''}{G} - \alpha = \frac{H''}{H} =: \beta
+\]
+
+Somit erhalte ich zwei weitere Gleichungen, die ich einfach lösen kann. Ich erhalte als Integralbasen:
+\[
+	B_G = \set{
+		\cos\del{\del{\alpha + \beta} x}, \sin\del{\del{\alpha + \beta} t}
+	}
+	, \quad
+	B_H = \set{
+		\cos\del{\beta y}, \sin\del{\beta y}
+	}
+\]
+
+Die Funktion $u$ ist nun eine Linearkombination aus Produkten, die jeweils aus
+einer Basisfunktion bestehen. Da allerdings die Randbedingungen festlegen, dass
+am Rand die Funktion $0$ sein soll, können nur Sinusterme vorkommen.
+
+Außerdem muss dann $\del{\alpha + \beta} a = n \pi$ und $\beta b = n \pi$
+gelten, damit bei $x=a$, $y=b$ und $t=0$ die Funktion ebenfalls $0$ ist.
+
+Somit muss also die Funktion sein:
+\[
+	u(x, y, t)
+	= \sin\del{\frac{n\pi}a x}
+	\sin\del{\frac{n\pi}b y}
+	\sin\del{\del{\frac{n\pi}a - \frac{n\pi}b} c^2 t}
+\]
+
+Diese Funktion erfüllt zwar die Anfangsbedingung für $u(x, y, 0)$, und auch
+auch alle Randbedingungen, allerdings scheitert es an $\dot u$. Die Ableitung
+ist einfach nur die beiden Sinusterme und innere Ableitung des Zeitterms. Das
+geforderte Polynom erhalte ich jedoch nicht.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Laplacegleichung                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+\section{Laplacegleichung}
+\label{2}
+
+Es soll bestimmt werden, für welche $\vec a$ folgende Gleichung durch $\phi\del{\inner{\vec x}{\vec a} + ct}$ gelöst wird:
+\[
+	- \laplace u - \frac1{c^2} \dpd[2] ut = 0
+\]
+
+Die Ableitungen der Funktion $\phi$ sind:
+\[
+	\dpd[2]\phi t = c^2 \ddot \phi\del{\inner{\vec x}{\vec a} + ct}
+\]
+
+Der Gradient:
+\[
+	\vnabla \phi = \phi'\del{\inner{\vec x}{\vec a} + ct} \vec a
+\]
+
+Laplace:
+\[
+	\laplace \phi = \phi''\del{\inner{\vec x}{\vec a} + ct} \inner{\vec a}{\vec a}
+\]
+
+Eingesetzt in die Differentialgleichung ergibt sich dann die Bedingung:
+\[
+	a^2 = 1
+\]
+
+Die Vektoren $\vec a$ müssen also normiert sein.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               Cauchy-Probleme                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Cauchy-Probleme}
+\label{3}
+
+\subsection{die Erste}
+
+\fehlt
+
+\subsection{die Zweite}
+
+Ich benutze die Lösungsformel:
+\[
+	u\del{\vec x, t} = \dpd{}t \del{
+		\frac{1}{2 \pi} \int_{\abs{\vec y - \vec x} \leq t} \dif \vec \tau_y \frac{u_0\del{\vec y}}{\sqrt{t^2 - \abs{\vec y - \vec x}^2}}
+	}
+	+
+	\frac{1}{2 \pi} \int_{\abs{\vec y - \vec x} \leq t} \dif \vec \tau_y \frac{u_1\del{\vec y}}{\sqrt{t^2 - \abs{\vec y - \vec x}^2}}
+\]
+
+Das Integral ist auf einer Einheitskreisfläche. Daher gilt:
+\[
+	\dif \vec \tau_y = \dif y_1 \dif y_2
+\]
+
+Die Grenzen sind:
+\[
+	x_1 - t \leq y_1 \leq x_1 + t
+	,\quad
+	x_2 - \sqrt{t^2-\del{y_1 - x_1}^2} \leq y_2 \leq x_2 + \sqrt{t^2-\del{y_1 - x_1}^2}
+\]
+
+Mit diesen Grenzen wird die Lösungsformel zu:
+\begin{align*}
+	u\del{\vec x, t} &= \dpd{}t \del{
+		\frac{1}{2 \pi}
+		\int_{x_1 - t}^{x_1 + t} \dif y_1
+		\int_{x_2 - \sqrt{t^2-\del{y_1 - x_1}^2}}^{x_2 + \sqrt{t^2-\del{y_1 - x_1}^2}} \dif y_2
+		\frac{u_0\del{\vec y}}{\sqrt{t^2 - \abs{\vec y - \vec x}^2}}
+	} \\
+	&\quad+
+	\frac{1}{2 \pi}
+	\int_{x_1 - t}^{x_1 + t} \dif y_1
+	\int_{x_2 - \sqrt{t^2-\del{y_1 - x_1}^2}}^{x_2 + \sqrt{t^2-\del{y_1 - x_1}^2}} \dif y_2
+	\frac{u_1\del{\vec y}}{\sqrt{t^2 - \abs{\vec y - \vec x}^2}}
+\end{align*}
+
+Dort setze ich jetzt die Funktion ein:
+\begin{align*}
+	u\del{\vec x, t} &= \dpd{}t \del{
+		\frac{1}{2 \pi}
+		\int_{x_1 - t}^{x_1 + t} \dif y_1
+		\int_{x_2 - \sqrt{t^2-\del{y_1 - x_1}^2}}^{x_2 + \sqrt{t^2-\del{y_1 - x_1}^2}} \dif y_2
+		\frac{y_1^2 + y_2^2}{\sqrt{t^2 - \abs{\vec y - \vec x}^2}}
+	} \\
+	&\quad+
+	\frac{1}{2 \pi}
+	\int_{x_1 - t}^{x_1 + t} \dif y_1
+	\int_{x_2 - \sqrt{t^2-\del{y_1 - x_1}^2}}^{x_2 + \sqrt{t^2-\del{y_1 - x_1}^2}} \dif y_2
+	\frac{1}{\sqrt{t^2 - \abs{\vec y - \vec x}^2}} \\
+	&= \frac 43 t^2 + \frac 13 \del{2t^2 + 3 \del{x_1^2 + x_2^2}} + t
+\end{align*}
+
+Diese Lösung erfüllt die Differentialgleichung und auch die Anfangsbedingungen.
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
