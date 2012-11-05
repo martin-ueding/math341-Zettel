@@ -162,6 +162,43 @@ auch alle Randbedingungen, allerdings scheitert es an $\dot u$. Die Ableitung
 ist einfach nur die beiden Sinusterme und innere Ableitung des Zeitterms. Das
 geforderte Polynom erhalte ich jedoch nicht.
 
+Die zweite Anfangsbedingung scheint dem Separationsansatz zu widersprechen. Wir
+versuchen dies im Folgenden zu beweisen.
+
+\begin{proof}
+	Sei $u(x, y, t)=v(x, y)w(t)$ Lösung der partiellen Differentialgleichung.
+	Dann gilt:
+	\begin{align*}
+		\dot u=v(x, y) \dot w(t) \\
+		\ddot u=v(x, y) \ddot w(t)
+	\end{align*}
+
+	Setze nun die zweite Anfangsbedingung ein:
+	\begin{align*}
+		\dot u(x, y, 0)&=v(x, y) \dot w(0)=x(x-a)y(y-b) \\
+\Rightarrow \quad v(x, y)&= x(x-a)y(y-b)\eta
+	\end{align*}
+
+	Wobei $\eta := 1/ \dot w(0)$ ein reeller Parameter ist. Damit folgt für die partiellen
+	Ableitungen von $x$ und $y$:
+	\begin{align*}
+		\dpd[2] ux&=2y(y-b)\eta w(t) \\
+	 \dpd[2] uy&=2x(x-a)\eta w(t)
+	\end{align*}
+
+	Setzen wir dies in die Differentialgleichung ein, erhalten wir:
+	\[
+		-2w(t)\eta (y(y-b)+x(x-b))+x(x-a)y(y-b) \ddot w(t) =0
+	\]
+
+	Daraus folgt:
+	\[
+		\ddot w(t) = 2 \eta w(t)\frac{y^2-yb+x^2-xb}{x^2y^2-x^2yb-y^2xa+xyab}
+	\]
+
+	Damit wäre $w$ aber von $x$ und $y$ abhängig. Ein Widerspruch.
+\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              Laplacegleichung                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
