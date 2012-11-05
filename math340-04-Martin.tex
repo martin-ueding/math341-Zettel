@@ -109,36 +109,36 @@ Als Ansatz benute ich $u(x, y, t) = v(x, y) w(t)$. Dies setze ich in die Differe
 
 Teilen durch $vw$ ergibt:
 \[
-	\underbrace{- \frac 1v \dpd[2] vx - \frac 1w \dpd[2] vy}_{=: -\alpha} + \underbrace{\frac{1}{c^2} \frac 1w \ddot w}_{=: \alpha} = 0
+	\underbrace{- \frac 1v \dpd[2] vx - \frac 1v \dpd[2] vy}_{=: \alpha} + \underbrace{\frac{1}{c^2} \frac 1w \ddot w}_{=: -\alpha} = 0
 \]
 
 Daraus folgen die zwei Gleichungen, die unabhängig sind:
 \[
-	v \alpha = \dpd[2] vx + \dpd[2] vy
+	- v \alpha = \dpd[2] vx + \dpd[2] vy
 	\quad \wedge \quad
-	\alpha c^2 w = \ddot w
+	- \alpha c^2 w = \ddot w
 \]
 
-Daraus folgt für die Integralbasis für $w$:
+Falls $\alpha$ positiv ist, wird die Differentialgleichung für $w$ durch Kosinus und Sinus gelöst. Ist $w = 0$, ist dies eine lineare Funktion. Falls $w < 0$, wird dies durch eine Exponentialfunktion gelöst. Mit den Randbedingungen kann allerdings $\alpha$ nur positiv sein. Daraus folgt für die Integralbasis für $w$:
 \[
 	B_w = \set{
-		\cos\del{\alpha c^2 t}, \sin\del{\alpha c^2 t}
+		\cos\del{\sqrt{\alpha} c t}, \sin\del{\sqrt{\alpha} c t}
 	}
 \]
 
 Für $v$ setze ich nun $GH$ ein und erhalte:
 \[
-	\frac{G''}{G} - \alpha = \frac{H''}{H} =: \beta
+	\frac{G''}{G} + \alpha = \frac{H''}{H} =: - \beta
 \]
 
 Somit erhalte ich zwei weitere Gleichungen, die ich einfach lösen kann. Ich erhalte als Integralbasen:
 \[
 	B_G = \set{
-		\cos\del{\del{\alpha + \beta} x}, \sin\del{\del{\alpha + \beta} t}
+	\cos\del{\sqrt{\alpha + \beta} x}, \sin\del{\sqrt{\alpha + \beta} t}
 	}
 	, \quad
 	B_H = \set{
-		\cos\del{\beta y}, \sin\del{\beta y}
+		\cos\del{\sqrt{\beta} y}, \sin\del{\sqrt{\beta} y}
 	}
 \]
 
@@ -146,58 +146,37 @@ Die Funktion $u$ ist nun eine Linearkombination aus Produkten, die jeweils aus
 einer Basisfunktion bestehen. Da allerdings die Randbedingungen festlegen, dass
 am Rand die Funktion $0$ sein soll, können nur Sinusterme vorkommen.
 
-Außerdem muss dann $\del{\alpha + \beta} a = m \pi$ und $\beta b = n \pi$
-gelten, damit bei $x=a$, $y=b$ und $t=0$ die Funktion ebenfalls $0$ ist.
+Außerdem muss dann $\sqrt{\alpha + \beta} a = m \pi$ und $\sqrt{\beta} b = n \pi$ ($m,
+n \in \mathbb N$) gelten, damit bei $x=a$, $y=b$ und $t=0$ die Funktion
+ebenfalls $0$ ist. Daraus folgt:
+\[
+	\beta = \frac{n^2 \pi^2}{b^2}
+	,\quad
+	\alpha = \frac{m^2 \pi^2}{a^2} - \frac{n^2 \pi^2}{b^2}
+\]
 
 Somit muss also die Funktion sein:
 \[
 	u(x, y, t)
 	= \sum_m \sum_n a_m a_n \sin\del{\frac{m\pi}a x}
 	\sin\del{\frac{n\pi}b y}
-	\sin\del{\del{\frac{m\pi}a - \frac{n\pi}b} c^2 t}
+	\sin\del{\sqrt{\frac{m^2\pi^2}{a^2} - \frac{n^2\pi^2}{b^2}} c t}
 \]
 
-Diese Funktion erfüllt zwar die Anfangsbedingung für $u(x, y, 0)$, und auch
-auch alle Randbedingungen, allerdings scheitert es an $\dot u$. Die Ableitung
-ist einfach nur die beiden Sinusterme und innere Ableitung des Zeitterms. Das
-geforderte Polynom erhalte ich jedoch nicht.
+Diese Funktion erfüllt für beliebige $a_m$ und $a_n$ die Anfangsbedingung
+für $u(x, y, 0)$, und auch auch alle Randbedingungen. Nun muss ich noch die
+$a_m$ und $a_n$ so wählen, dass die Bedingung für $\dot u$ erfüllt ist.
 
-Die zweite Anfangsbedingung scheint dem Separationsansatz zu widersprechen. Wir
-versuchen dies im Folgenden zu beweisen.
+Für $t=0$ soll für $\dot u$ gelten:
+\[
+	\sum_m \sum_n a_m a_n \sqrt{\frac{m^2\pi^2}{a^2} - \frac{n^2\pi^2}{b^2}} c \sin\del{\frac{m\pi}a x}
+	\sin\del{\frac{n\pi}b y}
+	= x(x-a)(y-b)
+\]
 
-\begin{proof}
-	Sei $u(x, y, t)=v(x, y)w(t)$ Lösung der partiellen Differentialgleichung.
-	Dann gilt:
-	\begin{align*}
-		\dot u=v(x, y) \dot w(t) \\
-		\ddot u=v(x, y) \ddot w(t)
-	\end{align*}
+Das ist letztlich eine zweidimensionale Fourierreihe. Die Koeffizenten $a_m$ und $a_n$ können durch Projektion bestimmt werden.
 
-	Setze nun die zweite Anfangsbedingung ein:
-	\begin{align*}
-		\dot u(x, y, 0)&=v(x, y) \dot w(0)=x(x-a)y(y-b) \\
-\Rightarrow \quad v(x, y)&= x(x-a)y(y-b)\eta
-	\end{align*}
-
-	Wobei $\eta := 1/ \dot w(0)$ ein reeller Parameter ist. Damit folgt für die partiellen
-	Ableitungen von $x$ und $y$:
-	\begin{align*}
-		\dpd[2] ux&=2y(y-b)\eta w(t) \\
-	 \dpd[2] uy&=2x(x-a)\eta w(t)
-	\end{align*}
-
-	Setzen wir dies in die Differentialgleichung ein, erhalten wir:
-	\[
-		-2w(t)\eta (y(y-b)+x(x-b))+x(x-a)y(y-b) \ddot w(t) =0
-	\]
-
-	Daraus folgt:
-	\[
-		\ddot w(t) = 2 \eta w(t)\frac{y^2-yb+x^2-xb}{x^2y^2-x^2yb-y^2xa+xyab}
-	\]
-
-	Damit wäre $w$ aber von $x$ und $y$ abhängig. Ein Widerspruch.
-\end{proof}
+\fehlt
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              Laplacegleichung                               %
