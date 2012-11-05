@@ -146,15 +146,15 @@ Die Funktion $u$ ist nun eine Linearkombination aus Produkten, die jeweils aus
 einer Basisfunktion bestehen. Da allerdings die Randbedingungen festlegen, dass
 am Rand die Funktion $0$ sein soll, können nur Sinusterme vorkommen.
 
-Außerdem muss dann $\del{\alpha + \beta} a = n \pi$ und $\beta b = n \pi$
+Außerdem muss dann $\del{\alpha + \beta} a = m \pi$ und $\beta b = n \pi$
 gelten, damit bei $x=a$, $y=b$ und $t=0$ die Funktion ebenfalls $0$ ist.
 
 Somit muss also die Funktion sein:
 \[
 	u(x, y, t)
-	= \sin\del{\frac{n\pi}a x}
+	= \sum_m \sum_n a_m a_n \sin\del{\frac{m\pi}a x}
 	\sin\del{\frac{n\pi}b y}
-	\sin\del{\del{\frac{n\pi}a - \frac{n\pi}b} c^2 t}
+	\sin\del{\del{\frac{m\pi}a - \frac{n\pi}b} c^2 t}
 \]
 
 Diese Funktion erfüllt zwar die Anfangsbedingung für $u(x, y, 0)$, und auch
