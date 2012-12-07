@@ -1,0 +1,50 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{9}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Ueding, Manz, Lemmer}}
+\fancyfoot[R]{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c}
+		Aufgabe & \ref 1 & \ref 2 & $\sum$   \\
+		\hline
+		Punkte & \punkte / 10 & \punkte / 5 & \punkte / 15
+	\end{tabular}
+\end{table}
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
