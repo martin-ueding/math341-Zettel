@@ -64,7 +64,34 @@
 \section{Dirichletproblem}
 \label 2
 
-\fehlt
+Gelöst werden soll die Laplacegleichung mit Randbedingung:
+\[
+	\dpd[2] ux + \dpd[2] uy = 0
+	\quad\wedge\quad
+	u(x, 0) = f(x)
+\]
+
+Wir setzen:
+\[
+	W(\omega, y) := \fourier_x(u)(\omega, y)
+	,\quad
+	W_0(\omega) := \fourier_x\del{f}(\omega)
+	,\quad
+	\dpd[2] Wx := \fourier_x\del{\dpd[2] ux} = - \omega^2 W
+\]
+
+Wir wenden die Fouriertransformation in $x \to \omega$, $\fourier_x$, auf die
+Differentialgleichung an und erhalten (unter Benutzung der Linearität):
+\[
+	\fourier_x\del{\dpd[2] ux} + \fourier_x \del{\dpd[2] uy} = 0
+	\iff
+	- \omega^2 W + \dpd[2] Wy = 0
+\]
+
+Diese Differentialgleichung können wir durch einen Exponentialansatz lösen:
+\[
+	W(\omega, y) = \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} W_0(\omega)
+\]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                 Zeitsignal                                  %
