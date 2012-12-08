@@ -93,6 +93,26 @@ Diese Differentialgleichung können wir durch einen Exponentialansatz lösen:
 	W(\omega, y) = \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} W_0(\omega)
 \]
 
+Dies müssen wir rücktransformieren um eine Lösung $u$ zu erhalten:
+\begin{align*}
+	u(x, y)
+	&= \fourier_x^{-1} \del{\del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} W_0(\omega)} \\
+	&= \frac 1{\sqrt{2\pi}} \fourier_x^{-1} \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} * \fourier_x^{-1} W_0(\omega) \\
+	&= \frac 1{\sqrt{2\pi}} \fourier_x^{-1} \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} * f(x) \\
+	&= \frac 1{2\pi} \del{
+		c_1 \int_{-\infty}^\infty \dif \omega \, \ee^{\ii \omega y} \ee^{\ii \omega x}
+		+ c_2 \int_{-\infty}^\infty \dif \omega \, \ee^{-\ii \omega y} \ee^{\ii \omega x}
+	} * f(x) \\
+	&= \frac 1{2\pi} \del{
+		c_1 \int_{-\infty}^\infty \dif \omega \, \ee^{\ii \omega (x+y)}
+		+ c_2 \int_{-\infty}^\infty \dif \omega \, \ee^{\ii \omega (x-y)}
+	} * f(x) \\
+	&= \frac 1{2\pi} \del{
+	\frac{c_1}{\ii (x+y)} \sbr{\ee^{\ii \omega (x+y)}}_{-\infty}^\infty
+	+ \frac{c_2}{\ii (x-y)} \sbr{\ee^{\ii \omega (x-y)}}_{-\infty}^\infty
+	} * f(x) \\
+\end{align*}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                 Zeitsignal                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
