@@ -51,7 +51,28 @@
 
 \subsection{}
 
-\fehlt
+{
+	\renewcommand \exp[1]{\mathrm e^{#1}}
+
+	Gesucht ist die Fouriertransformierte von $f_a\del x=\exp{-a\abs x}$ für
+	$a>0$. Ich berechne
+	\begin{align*}
+		\mathcal F\del{f}\del\omega&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f_a\del x\cdot \exp{-i\omega x}\dif x\\
+												 &=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x}\cdot \exp{-i\omega x}\dif x\\
+						 &=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x-i\omega x}\dif x\\
+				&=\frac{1}{\sqrt{2\pi}}\del{\int_{-\infty}^0\exp{\del{a-i\omega}x}\dif x+\int_0^\infty\exp{-\del{a+i\omega}x}\dif x}\\
+			 &=\frac{1}{\sqrt{2\pi}}\del{\left.\frac{1}{a-i\omega}\exp{\del{a-i\omega}x}\right|_{-\infty}^0-\left.\frac{1}{a+i\omega}\exp{-\del{a+i\omega}x}\right|_0^{\infty}}\\
+			 &=\frac{1}{\sqrt{2\pi}}\del{\frac{1}{a-i\omega}+\frac{1}{a+i\omega}}\\
+			 &=\frac{1}{\sqrt{2\pi}}\frac{2a}{a^2+\omega^2}\\
+			 &=\frac{\sqrt{2}}{\pi}\frac{a}{a^2+\omega^2}
+		\intertext{Die Gesamtenergie ergibt sich zu}
+		\int_{-\infty}^\infty \abs{f_a\del{x}}^2\dif x&=\int_{-\infty}^\infty \del{\exp{-a\abs{x}}}^2\dif x\\
+																						  &=\int_{-\infty}^\infty \del{\exp{-2a\abs{x}}}^2\dif x\\
+									   &=\int_{-\infty}^0 \exp{2ax}\dif x+\int_{0}^\infty \exp{-2ax}\dif x\\
+						&=\left.\frac{1}{2a}\exp{2ax}\right|_{-\infty}^0-\left.\frac{1}{2a}\exp{-2ax}\right|_{0}^\infty\\
+			   &=\frac 1a
+	\end{align*}
+}
 
 \subsection{}
 
