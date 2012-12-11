@@ -58,25 +58,29 @@
 	$a>0$. Ich berechne
 	\begin{align*}
 		\mathcal F\del{f}\del\omega&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f_a\del x\cdot \exp{-i\omega x}\dif x\\
-												 &=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x}\cdot \exp{-i\omega x}\dif x\\
-						 &=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x-i\omega x}\dif x\\
-				&=\frac{1}{\sqrt{2\pi}}\del{\int_{-\infty}^0\exp{\del{a-i\omega}x}\dif x+\int_0^\infty\exp{-\del{a+i\omega}x}\dif x}\\
-			 &=\frac{1}{\sqrt{2\pi}}\del{\left.\frac{1}{a-i\omega}\exp{\del{a-i\omega}x}\right|_{-\infty}^0-\left.\frac{1}{a+i\omega}\exp{-\del{a+i\omega}x}\right|_0^{\infty}}\\
-			 &=\frac{1}{\sqrt{2\pi}}\del{\frac{1}{a-i\omega}+\frac{1}{a+i\omega}}\\
-			 &=\frac{1}{\sqrt{2\pi}}\frac{2a}{a^2+\omega^2}\\
-			 &=\frac{\sqrt{2}}{\pi}\frac{a}{a^2+\omega^2}
+		\displaybreak[3]
+							 &=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x}\cdot \exp{-i\omega x}\dif x\\
+		\displaybreak[3]
+		&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x-i\omega x}\dif x\\
+		\displaybreak[3]
+  &=\frac{1}{\sqrt{2\pi}}\del{\int_{-\infty}^0\exp{\del{a-i\omega}x}\dif x+\int_0^\infty\exp{-\del{a+i\omega}x}\dif x}\\
+		\displaybreak[3]
+  &=\frac{1}{\sqrt{2\pi}}\del{\left.\frac{1}{a-i\omega}\exp{\del{a-i\omega}x}\right|_{-\infty}^0-\left.\frac{1}{a+i\omega}\exp{-\del{a+i\omega}x}\right|_0^{\infty}}\\
+		\displaybreak[3]
+  &=\frac{1}{\sqrt{2\pi}}\del{\frac{1}{a-i\omega}+\frac{1}{a+i\omega}}\\
+		\displaybreak[3]
+		&=\frac{1}{\sqrt{2\pi}}\frac{2a}{a^2+\omega^2}\\
+  &=\frac{\sqrt{2}}{\pi}\frac{a}{a^2+\omega^2}
 		\intertext{Die Gesamtenergie ergibt sich zu}
 		\int_{-\infty}^\infty \abs{f_a\del{x}}^2\dif x&=\int_{-\infty}^\infty \del{\exp{-a\abs{x}}}^2\dif x\\
-																						  &=\int_{-\infty}^\infty \del{\exp{-2a\abs{x}}}^2\dif x\\
-									   &=\int_{-\infty}^0 \exp{2ax}\dif x+\int_{0}^\infty \exp{-2ax}\dif x\\
-						&=\left.\frac{1}{2a}\exp{2ax}\right|_{-\infty}^0-\left.\frac{1}{2a}\exp{-2ax}\right|_{0}^\infty\\
-			   &=\frac 1a
+		\displaybreak[3]
+		&=\int_{-\infty}^0 \exp{2ax}\dif x+\int_{0}^\infty \exp{-2ax}\dif x\\
+		\displaybreak[3]
+  &=\left.\frac{1}{2a}\exp{2ax}\right|_{-\infty}^0-\left.\frac{1}{2a}\exp{-2ax}\right|_{0}^\infty\\
+		\displaybreak[3]
+  &=\frac 1a
 	\end{align*}
 }
-
-\subsection{}
-
-\fehlt
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              Dirichletproblem                               %
@@ -118,6 +122,9 @@ Dies müssen wir rücktransformieren um eine Lösung $u$ zu erhalten:
 \begin{align*}
 	u(x, y)
 	&= \fourier_x^{-1} \del{\del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} W_0(\omega)} \\
+	\intertext{%
+		Das Produkt lösen wir in eine Faltung in $x$ auf.
+	}
 	&= \frac 1{\sqrt{2\pi}} \fourier_x^{-1} \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} * \fourier_x^{-1} W_0(\omega) \\
 	&= \frac 1{\sqrt{2\pi}} \fourier_x^{-1} \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} * f(x) \\
 	&= \frac 1{2\pi} \del{
@@ -132,9 +139,30 @@ Dies müssen wir rücktransformieren um eine Lösung $u$ zu erhalten:
 	\frac{c_1}{\ii (x+y)} \sbr{\ee^{\ii \omega (x+y)}}_{-\infty}^\infty
 	+ \frac{c_2}{\ii (x-y)} \sbr{\ee^{\ii \omega (x-y)}}_{-\infty}^\infty
 	} * f(x) \\
+	\intertext{%
+		Die eckigen Klammern sind undefiniert, es sei denn, es gilt $x + y =
+		0$, beziehungsweise $x - y = 0$. Eine Spektralfunktion, die überhaupt
+		nicht lokalisiert ist, sollte als ursprüngliche Funktion eine haben,
+		die unendlich lokalisiert ist. Dann muss der Bruch allerdings zu einer
+		$\delta$-Distribution werden. Alle Vorfaktoren ziehen wir in die
+		unbestimmten Konstanten.
+	}
+	&= \del{
+	c_3 \delta\del{x+y} + c_4 \delta\del{x-y}
+	} * f(x) \\
+	\intertext{%
+		Die Faltung in $x$ ist ein Integral in $x$, so dass die
+		$\delta$-Distributionen aufgelöst werden können. Dabei werten wir diese
+		bei $x \pm y - x = \pm y$ aus.
+	}
+	&= \int_{-\infty}^\infty \dif x \, \del{
+	c_3 \delta\del{y} + c_4 \delta\del{-y}
+	} f(x) \\
+	&= c_3 f(y) + c_4 f(-y)
 \end{align*}
 
-\fehlt
+Das ganze sieht jetzt ein wenig aus wie Ladung und Spiegelladung. Durch die
+Symmetrie in $x$ taucht diese Variable auch nicht mehr explizit auf.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                 Zeitsignal                                  %
