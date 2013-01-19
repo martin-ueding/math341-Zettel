@@ -1,0 +1,55 @@
+% Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{scrpage2}
+\usepackage{tikz}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{13}
+
+\pagestyle{scrheadings}
+
+\automark{section}
+\cfoot{\footnotesize{\thegruppe}}
+\chead{}
+\ifoot{\footnotesize{Ueding, Manz, Lemmer}}
+\ihead{\themodul{} -- Übung \theuebung}
+\ofoot{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c|c}
+		Aufgabe & \ref 1 & \ref 2 & \ref 3 & \ref 4 & $\sum$   \\
+		\hline
+		Punkte & \punkte / 4 & \punkte / 3 & \punkte / 5 & \punkte / 3 & \punkte / 15
+	\end{tabular}
+\end{table}
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
