@@ -1,0 +1,222 @@
+% Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{scrpage2}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{14}
+
+\pagestyle{scrheadings}
+
+\automark{section}
+\cfoot{\footnotesize{\thegruppe}}
+\chead{}
+\ifoot{\footnotesize{Ueding, Manz, Lemmer}}
+\ihead{\themodul{} -- Übung \theuebung}
+\ofoot{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c}
+		Aufgabe
+		& \ref 1
+		& \ref 2
+		& \ref 3
+		& \ref 4
+		& $\sum$ \\
+		\hline
+		Punkte
+		& \punkte / 4
+		& \punkte / 4
+		& \punkte / 4
+		& \punkte / 2
+		& \punkte / 14
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Hauptzweig des Logarithmus                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hauptzweig des Logarithmus}
+\label 1
+
+\subsection{$z_0 = 1$}
+
+Wir entwickeln um $z_0 = 1$. Die Ableitungen sind, wie im Reellen:
+\[
+	f^{(n)} (-1)^{n+1} x^{-n}
+\]
+
+\textcolor{red}{
+	Das sollte so nicht sein, vor allem, weil dann auch im weiteren Verlauf ein
+	unendlicher Konvergenzradius vorkommen kann. Da $z = 0$ allerdings eine
+	Polstelle ist, und die Funktion nur auf $\C^-$ definiert ist, sollte es
+	Probleme geben.
+}
+
+Die Reihe ist mit $f^{(n)}(1) = (-1)^{n+1}$:
+\[
+	f(z) = \sum_{n=0}^\infty \frac{(-1)^{n+1}}{n!} \del{z - z_0}^n
+\]
+
+\subsection{$z_0 = -1 + \iup$}
+
+\fehlt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            holomorphe Funktionen                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+\section{holomorphe Funktionen}
+\label 2
+
+\subsection{erste Funktion}
+
+\fehlt
+
+\addtocounter{subsection}{2}
+\subsection{vierte Funktion}
+
+\fehlt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                        Entwicklung in Laurentreihen                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Entwicklung in Laurentreihen}
+\label 3
+
+\subsection{erste Funktion}
+
+Wir führen eine Partialbruchzerlegung durch:
+\[
+	f(z) = \frac3{(z+1)(z-2)} = -\frac1{z+1} + \frac1{z-2}
+\]
+
+Wir beginnen mit dem ersten Summanden und schreiben diesen als geometrische
+Reihe:
+\[
+	-\frac1{z+1}
+	=
+	- \frac 1z \frac1{1+\frac 1z}
+	=
+	- \frac 1z \sum_{k=0}^\infty \del{\frac 1z}^k
+	- \sum_{k=1}^\infty \del{\frac 1z}^k
+\]
+
+Dabei müssen wir als Einschränkung $\abs z > 1$ einfügen, da die Reihe sonst nicht konvergiert.
+
+Den zweiten Summanden schreiben wir analog um:
+\[
+	\frac1{z-2}
+	=
+	\frac 1z \frac1{1-\frac2z}
+	=
+	\frac 1z \sum_{k=0}^\infty \del{\frac2z}^k
+	=
+	\frac 12 \sum_{k=1}^\infty \del{\frac2z}^{k}
+\]
+
+Dort erhalten wir $\abs z > 2$, damit die Reihe konvergiert.
+
+Beide Summen schreiben wir zusammen:
+\[
+	\sum_{k=1}^\infty \del{ \frac 12 \del{\frac2z}^{k} - \del{\frac 1z}^k}
+	=
+	\sum_{k=-\infty}^{-1} \del{ \frac 12 \del{\frac z2}^{k} - z^k}
+	=
+	\sum_{k=-\infty}^{-1} \del{\del{\frac 12}^{k+1} - 1} z^k
+\]
+
+Da wir allerdings $\abs z > 1$ und $\abs z > 2$ erhalten haben, haben wir wohl
+eine Reihe im Kreisring $B_{2, \infty}(0)$ erzeugt. Gefragt war $B_{1, 2}(0)$.
+
+\fehlt
+
+\subsection{zweite Funktion}
+
+\fehlt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             Konvergenzbereiche                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Konvergenzbereiche}
+\label 4
+
+\subsection{erste Reihe}
+
+Wir zerlegen die Reihe in positiven und negativen Teil:
+\[
+	\sum_{k=0}^\infty \frac{z^k}{k!} + \sum_{k=-\infty}^{-1} \frac{z^k}{\abs k!}
+\]
+
+Der Konvergenzradius $R$ der ersten Reihe ist $\infty$, da es die Exponentialfunktion ist:
+\[
+	\frac 1R
+	= \limsup_{k\to\infty} \frac1{\sqrt[k]{k!}}
+	= 0
+\]
+
+Für den zweiten Summanden ist der Konvergenzradius $r = 0$:
+\[
+	r
+	= \limsup_{k\to\infty} \frac1{\sqrt[k]{k!}}
+	= 0
+\]
+
+Da wir nur innerhalb des Kreisrings sicher Konvergenz haben, muss $0 < \abs z <
+\infty$ gelten.
+
+\subsection{zweite Reihe}
+
+Die Koeffizienten der zweiten Reihe sind:
+\[
+	a_k = 2 \sech(ak)
+\]
+
+Wir bestimmen die Konvergenzradien:
+\[
+	\frac 1R
+	= \limsup_{k\to\infty} {\sqrt[k]{\eup^{ak} + \eup^{-ak}}}
+	\geq \limsup_{k\to\infty} {\sqrt[k]{\eup^{ak}}}
+	= \eup^{a}
+\]
+
+Analog für $r$. Wir haben $r \geq \eup^a$ als auch $R \leq \eup^{-a}$. Die $z$, für die die Reihe konvergiert, sind also:
+\[
+	\eup^a < \abs z < \eup^{-a}
+\]
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
