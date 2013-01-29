@@ -132,7 +132,10 @@ Reihe:
 
 Dabei müssen wir als Einschränkung $\abs z > 1$ einfügen, da die Reihe sonst nicht konvergiert.
 
-Den zweiten Summanden schreiben wir analog um:
+Den zweiten Summanden schreiben wir in eine normale Taylorreihe, da wir hier
+eine Konvergenzobergrenze erhalten möchten. Nur so können wir den
+Konvergenzring zwischen 1 und 2 erreichen. Würden wir hier ebenfalls in eine
+geometrische Reihe entwickeln\footnote{
 \[
 	\frac1{z-2}
 	=
@@ -142,26 +145,118 @@ Den zweiten Summanden schreiben wir analog um:
 	=
 	\frac 12 \sum_{k=1}^\infty \del{\frac2z}^{k}
 \]
+}, hätten wir im Konvergenzring $B_{2, \infty}(0)$ entwickelt.
 
-Dort erhalten wir $\abs z > 2$, damit die Reihe konvergiert.
+Wir entwickeln in eine Reihe:
+\[
+	g(z) = \frac{1}{z-2}
+	\implies
+	g^{(n)}(z) = (-1)^n \frac{1}{(z-2)^n}
+	\implies
+	g^{(n)}(0) = \del{\half}^n
+	\implies
+	g(z) = \sum_{n=0}^\infty \del{\half}^n z^n
+\]
+
+Diese Reihe konvergiert für alle $\abs z < 2$.
 
 Beide Summen schreiben wir zusammen:
 \[
-	\sum_{k=1}^\infty \del{ \frac 12 \del{\frac2z}^{k} - \del{\frac 1z}^k}
+	\frac 12 \sum_{k=1}^\infty \del{\frac2z}^{k}
+	+ \sum_{n=0}^\infty \del{\half}^n z^n
 	=
-	\sum_{k=-\infty}^{-1} \del{ \frac 12 \del{\frac z2}^{k} - z^k}
-	=
-	\sum_{k=-\infty}^{-1} \del{\del{\frac 12}^{k+1} - 1} z^k
+	\frac 12 \sum_{n=-\infty}^{-1} \del{\half}^{n} z^n
+	+ \sum_{n=0}^\infty \del{\half}^n z^n
 \]
-
-Da wir allerdings $\abs z > 1$ und $\abs z > 2$ erhalten haben, haben wir wohl
-eine Reihe im Kreisring $B_{2, \infty}(0)$ erzeugt. Gefragt war $B_{1, 2}(0)$.
-
-\fehlt
 
 \subsection{zweite Funktion}
 
-\fehlt
+Es soll
+\[
+	f(z) = \frac{4z-z^2}{\del{z^2-4}\del{z+1}}
+\]
+entwickelt werden. Wir führen eine Partialbruchzerlegung durch:
+\[
+	f(z) = - \frac32\frac1{z+2} + \frac13\frac1{z-2} - \frac53\frac1{z+1}
+\]
+
+Zu den einzelnen Summanden bilden wir die Maclaurinreihe:
+\begin{enumerate}
+	\item
+		\[
+			- \frac32\frac1{z+2}
+			= - \frac 32 \sum_{n=0}^\infty \del{-\frac 12}^n z^n
+		\]
+
+	\item
+		\[
+			\frac13\frac1{z-2}
+			= \frac 13 \sum_{n=0}^\infty \del{\frac 12}^n z^n
+		\]
+
+	\item
+		\[
+			\frac53\frac1{z+1}
+			= - \frac 53 \sum_{n=0}^\infty \del{-1}^n z^n
+		\]
+\end{enumerate}
+
+Zu jedem der Summanden bilden wir außerdem noch eine Art geometrische Reihe:
+\begin{enumerate}
+	\item
+		\[
+			- \frac 32 \frac{1}{z+2}
+			= - \frac 32 \frac 1z \frac{1}{1+\frac 2z}
+			= - \frac 32 \frac 1z \sum_{n=0}^\infty \del{-\frac 2z}^n
+			= 3 \sum_{n=1}^\infty \del{-\frac 2z}^n
+			= 3 \sum_{n=-\infty}^{-1} \del{-\frac 12}^n z^n
+		\]
+
+	\item
+		\[
+			\frac 13 \frac{1}{z-2}
+			= \frac 13 \frac 1z \sum_{n=0}^{\infty} \del{\frac 2z}^n
+			= \frac 16 \frac 1z \sum_{n=-\infty}^{-1} \del{\half}^n z^n
+		\]
+
+	\item
+		\[
+			- \frac 53 \frac{1}{z+1}
+			= - \frac 53 \frac 1z \sum_{n=0}^\infty \del{-\frac 1z}^n
+			= \frac 53 \sum_{n=1}^\infty \del{-\frac 1z}^n
+			= \frac 53 \sum_{n=-\infty}^{-1} (-1)^n z^n
+		\]
+\end{enumerate}
+
+Nun müssen wir diese Teile geschickt kombinieren, je nach gewünschtem
+Konvergenzring. Wir beginnen mit $B_{1,2}(0)$. Dazu brauchen wir die geometrische Reihe des Termes mit Polstelle bei $\abs z = 1$ und die Maclaurinreihen der Terme mit Polstelle bei $\abs z = 2$. Zusammen also:
+\[
+	f(z) \restriction B_{1,2}(0)
+	=
+	- \frac 32 \sum_{n=0}^\infty \del{-\frac 12}^n z^n
+	+ \frac 13 \sum_{n=0}^\infty \del{\frac 12}^n z^n
+	+ \frac 53 \sum_{n=-\infty}^{-1} (-1)^n z^n
+\]
+
+Für $B_{2,\infty}(0)$ benötigen wir nur die geometrischen Reihen von allen
+Summanden, da nur diese für beliebig große Summanden gelten:
+\[
+	f(z) \restriction B_{2,\infty}(0)
+	=
+	3 \sum_{n=-\infty}^{-1} \del{-\frac 12}^n z^n
+	+ \frac 16 \frac 1z \sum_{n=-\infty}^{-1} \del{\half}^n z^n
+	+ \frac 53 \sum_{n=-\infty}^{-1} (-1)^n z^n
+\]
+
+Und für $B_{0,1}(0)$ brauchen wir nur die Maclaurinreihen, da diese nur für
+kleine $\abs z$ gültig sind:
+\[
+	f(z) \restriction B_{0,1}(0)
+	=
+	- \frac 32 \sum_{n=0}^\infty \del{-\frac 12}^n z^n
+	+ \frac 13 \sum_{n=0}^\infty \del{\frac 12}^n z^n
+	- \frac 53 \sum_{n=0}^\infty \del{-1}^n z^n
+\]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                             Konvergenzbereiche                              %
@@ -180,14 +275,14 @@ Wir zerlegen die Reihe in positiven und negativen Teil:
 Der Konvergenzradius $R$ der ersten Reihe ist $\infty$, da es die Exponentialfunktion ist:
 \[
 	\frac 1R
-	= \limsup_{k\to\infty} \frac1{\sqrt[k]{k!}}
+	= \limsup_{k\to\infty} \sqrt[k]{\frac1{k!}}
 	= 0
 \]
 
 Für den zweiten Summanden ist der Konvergenzradius $r = 0$:
 \[
 	r
-	= \limsup_{k\to\infty} \frac1{\sqrt[k]{k!}}
+	= \limsup_{k\to\infty} \sqrt[k]{\frac1{k!}}
 	= 0
 \]
 
