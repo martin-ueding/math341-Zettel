@@ -1,0 +1,338 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\documentclass[11pt, ngerman, fleqn]{article}
+
+\usepackage[a4paper, left=3cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[activate]{pdfcprot}
+\usepackage[cdot, squaren]{SIunits}
+\usepackage[iso]{isodate}
+\usepackage[parfill]{parskip}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{color}
+\usepackage{commath}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{tikz}
+
+\usepackage[charter, greekuppercase=italicized]{mathdesign}
+
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+
+\hypersetup{
+	breaklinks=false,
+	citecolor=darkgreen,
+	colorlinks=true,
+	linkcolor=black,
+	menucolor=black,
+	urlcolor=darkblue,
+}
+
+\setlength{\columnsep}{2cm}
+
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\asinh}{arsinh}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\diam}{diam}
+
+\newcommand{\dalambert}{\mathop{{}\Box}\nolimits}
+\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\emesswert}{\del{\messwert \pm \messwert}}
+\newcommand{\e}[1]{\cdot 10^{#1}}
+\newcommand{\fehlt}{\textcolor{red}{Hier fehlen noch Inhalte.}}
+\newcommand{\half}{\frac 12}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\laplace}{\mathop{{}\Deltaup}\nolimits}
+\newcommand{\messwert}{\textcolor{blue}{\square}}
+\newcommand{\punkte}{\textcolor{white}{xxxxx}}
+\newcommand{\tens}[1]{\boldsymbol{#1}}
+\newcommand{\vnabla}{\vec \nabla}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{3}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Ueding, Manz, Lemmer}}
+\fancyfoot[R]{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\setcounter{section}{0}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}} \and Paul Manz \and Lino Lemmer}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c}
+		Aufgabe & \ref{sec:1} & \ref{sec:2} & \ref{sec:3} & $\sum$   \\
+		\hline
+		Punkte & \punkte / 2 & \punkte / 6 & \punkte / 6 & \punkte / 14
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                          Orthogonalitätsrelation                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Orthogonalitätsrelation}
+\label{sec:1}
+
+Es soll gezeigt werden, dass die Basisvektoren des $L^2$ linear unabhängig sind.
+
+\paragraph{Sinus}
+
+Für den Fall $m \neq n$:
+\begin{align*}
+	\int_{-\pi}^\pi \dif x \sin\del{nx} \sin\del{mx}
+	&= \half \int_{-\pi}^\pi \dif x \del{\cos\del{\del{n-m} x} - \cos\del{\del{n+m} x}} \\
+	&= \half \sbr{\frac{1}{n-m} \sin\del{\del{n-m} x} - \frac{1}{n+m} \sin\del{\del{n+m} x}}_{-\pi}^\pi  \\
+	&= 0
+\end{align*}
+
+Für den Fall $m = n$:
+\begin{align*}
+	\int_{-\pi}^\pi \dif x \sin^2\del{mx}
+	&= \int_{-\pi}^\pi \dif x \frac{1-\cos\del{2nx}}{2} \\
+	&= \sbr{\half x - \frac{1}{2n} \sin\del{2nx}}_{-\pi}^\pi \\
+	&= \pi
+\end{align*}
+
+\paragraph{Sinus und Kosinus}
+
+Für den Fall $m \neq n$:
+{
+	\renewcommand\d\dif
+	\begin{align*}
+		\int_{-\pi}^{\pi}\d x\sin\left(mx\right)\cos\left(nx\right)&=\frac 12\int_{-\pi}^{\pi}\d x\sin\left(\left(m-n\right)x\right)+\sin\left(\left(m+n\right)x\right)\\
+															 &=-\frac 12 \left[\frac 1{m-n}\cos\left(\left(m-n\right)x\right)+\frac 1{m+n} \cos\left(\left(m+n\right)x\right) \right]_{-\pi}^{\pi}\\
+				&=0
+	\end{align*}
+}
+
+Für den Fall $m = n$ muss auf den ersten Summanden verzichtet werden. Der
+zweite Summand ist allerdings auch eigenständig $0$, so dass die Relation auch
+dann gilt.
+
+\paragraph{Kosinus}
+{
+	\renewcommand\d\dif
+	F"ur den Fall $m\neq n$:
+	\begin{align*}
+	\int_{-\pi}^{\pi}\d x\cos\left(mx\right)\cos\left(nx\right)&=\frac 12\int_{-\pi}^{\pi}\d x\cos\left(\left(m-n\right)x\right)+\cos\left(\left(m+n\right)x\right)\\
+	&=\frac 12 \left[\frac 1{m-n}\sin\left(\left(m-n\right)x\right)+\frac 1{m+n} \sin\left(\left(m+n\right)x\right) \right]_{-\pi}^{\pi}\\
+	&=0
+	\end{align*}
+Für den Fall $m=n$:
+	\begin{align*}
+	\int_{-\pi}^{\pi}\d x\cos\left(mx\right)\cos\left(nx\right)&=\frac 12\int_{-\pi}^{\pi}\d x \,1+\cos\left(2mx\right)\\
+	&=\frac 12 \left[x+\frac 1{2m} \sin\left(2mx\right) \right]_{-\pi}^{\pi}\\
+	&=\pi
+	\end{align*}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            duhamelsches Prinzip                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+\section{duhamelsches Prinzip}
+\label{sec:2}
+
+Für ein Anfangswertproblem mit Störfunktion $f$ ist die Lösung:
+\[
+	u(x, t) = \frac a2 \int_0^t \dif s \int_{x-a(t-s)}^{x+a(t-s)} \dif y f(y, s)
+\]
+
+\stepcounter{subsection}
+\subsection{Cauchy-Probleme}
+
+\paragraph{die erste}
+
+Gelöst werden soll:
+\[
+	- \dpd[2]ux + \frac{1}{a^2} \dpd[2]ut = \frac{1}{a^2} \sin(\omega x)
+	,\quad
+	u(x, 0) = 0
+	,\quad
+	\dpd ut(x, 0) = 0
+\]
+
+Dazu setze ich die Störfunktion ein und rechne das Integral aus:
+\begin{align*}
+	u(x, t) &= \frac a2 \int_0^t \dif s \int_{x-a(t-s)}^{x+a(t-s)} \dif y \frac{1}{a^2} \sin(\omega y) \\
+   &= \frac{1}{2 a^2 \omega} \del{\sin\del{x+at} + \sin\del{x-at} - 2 \sin(x)}
+\end{align*}
+
+Die Bedingungen $u(x, 0) = 0$ und $\pd ut(x, 0) = 0$ sind erfüllt.
+
+\paragraph{die zweite}
+
+Ich benutze $u'' := \pd[2]ux$ und $\ddot u := \pd[2]ut$ als Abkürzungen.
+
+Gelöst werden soll:
+\[
+	- u'' + \frac{1}{2^2} \ddot u = \frac 1{2^2} \sin(x)
+	,\quad
+	u(x, 0) = \sin(x)
+	,\quad
+	\dot u(x, 0) = 0
+\]
+
+Dazu löse ich die homogene Gleichung mit den Anfangsbedingungen mit der Formel aus \cite[Seite 41]{john-1910}. Die Formel ist mit Anfangsbedingungen $u(x, 0) =: u_0(x)$ und $\dot u(x, 0) =: u_1(x)$:
+\[
+	u(x, t) = \half \del{
+		u_0(x+ct) + u_u(x-ct)
+	}
+	+ \frac{1}{2a} \int_{x-at}^{x+at} \dif \xi u_1(\xi)
+\]
+
+Die Lösung ist dann:
+\[
+	u_h(x, t) = \frac 18 \del{\sin(x - 2t) + \sin(x + 2t)}
+\]
+
+Nun löse ich noch die inhomogene Gleichung mit $u(x, 0) = 0 \wedge \dot u(x, 0) = 0$. Die Summe dieser Lösung und $u_h$ erfüllen sowohl die Differentialgleichung (da diese linear ist) als auch die Anfangsbedingungen. Nach dem duhamelschen Prinzip ist die inhomogene Lösung:
+\[
+	u_p(x, t)
+	= \frac 14 \int_0^t \dif s \int_{x-a(t-s)}^{x+a(t-s)} \dif y \sin(y)
+\]
+
+Dies ist aufgelöst:
+\[
+	u_p(x, t)
+	= \frac 18 \del{
+		\sin(x-4t) - \sin(x-2t) - \sin(x) + \sin(x+2t)
+	}
+\]
+
+Die Lösung ist die Summe, also:
+\[
+	u(x, t)
+	= \frac 18 \del{
+		\sin(x-4t) - \sin(x) + 2 \sin(x+2t)
+	}
+\]
+
+Diese Funktion erfüllt die Anfangsbedingungen, allerdings kommt in die
+Differentialgleichung eingesetzt nicht ganz $\sin(x)$ heraus, sondern:
+\[
+	\sin(x) + \half \del{
+		- 5 \sin(x-4t) - \frac 94 \sin(x+2t)
+	}
+\]
+
+\paragraph{die zweite zweite}
+
+Gelöst werden soll:
+\[
+	- u'' + \frac 19 \ddot u = \frac 19 \sin(t)
+	,\quad
+	u(x, 0) = 1
+	,\quad
+	\dot u(x, 0) = 1
+\]
+
+Die Lösung des homogen Anfangswertproblem ist:
+\[
+	u_h(x, t) = 1 + t
+\]
+
+Die Lösung der inhomogenen Gleichung mit $u(x, 0) = 0 \wedge \dot u(x, 0)$ ist:
+\[
+	u_p(x, t) = t \del{
+		1 - \cos(t)
+	} +1 + t
+\]
+
+Als Summe ergibt sich:
+\[
+	u(x, t) = 1 + 2t - t \cos(t)
+\]
+
+Dies erfüllt die Anfangsbedingungen. In die Differentialgleichung eingesetzt
+ergibt sich allerdings wie oben etwas anderes:
+\[
+	\sin(t) + t \cos(t) + \sin(t) \neq \sin(t)
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Randanfangswertaufgaben                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Randanfangswertaufgaben}
+\label{sec:3}
+
+\subsection{die Erste}
+
+In \cite[Seite 43]{john-1910} wird dieser Lösungsansatz gegeben. Allerdings wird dort als
+Grenze $\pi$ und nicht $1$ genommen. Daher habe ich hier das $\pi$ in der
+Funktion entfernt. Man kann das sicher \emph{irgendwie} wieder reinbasteln ...
+
+Als Ansatz wähle ich:
+\[
+	u(x, t) = \sum_n a_n(t) \sin(nx)
+\]
+
+Dabei muss für jeden $a_n$ in der Reihe auch die Differentialgleichung erfüllt
+sein. Somit gilt die gleiche, homogene, DGL ohne Randbedingungen auch für die
+Koeffizienten. Diese Differentialgleichung lässt sich zur eine
+Linearkombination von Kosinus und Sinus lösen. Somit sind die Koeffizienten:
+\[
+	a_n(t) = c_n \cos(nat) + d_n \sin(nat)
+\]
+
+Die Koeffizenten kann ich nun durch Entwicklung der Anfangsbedingung $u_0(x) :=
+u(x, 0)$ nach Kosinus ermitteln:
+\[
+	c_n = \frac 2\pi \int_0^\pi \dif x u_0(x) \cos(nx) = 0
+\]
+
+Die Sinuskoeffizienten analog, allerdings $u_1(x) := \dot u(x, 0)$:
+\[
+	d_n = \frac 2\pi \int_0^\pi \dif x \sin(2x) \sin(nx) = - \frac{4 \sin(n \pi)}{cn \del{-4 + n^2} \pi}
+\]
+
+Die $d_n$ sind 0 für alle $n$, außer für $n = 2$, dann ist es allerdings ein
+Grenzfall. Ich wende l'Hospital für $n$ an. Dann erhalte ich den recht einfachen Ausdruck:
+\[
+	d_2 = - \frac{1}{2c}
+\]
+
+Somit ist die Lösungsfunktion:
+\[
+	u(x, t) = - \frac{1}{2c} \sin(2at) \sin(2x)
+\]
+
+Die Funktion erfüllt die Differentialgleichung und die Anfangsbedingungen und
+die Randbedingungen.
+
+\subsection{die Zweite}
+
+\bibliography{../../zentrale_BibTeX/Central}
+\bibliographystyle{plain}
+
+\end{document}

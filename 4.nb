@@ -1,0 +1,209 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6351,        200]
+NotebookOptionsPosition[      5889,        179]
+NotebookOutlinePosition[      6226,        194]
+CellTagsIndexPosition[      6183,        191]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sin", "[", " ", 
+      RowBox[{"2", "x"}], "]"}], 
+     RowBox[{"Sin", "[", 
+      RowBox[{"n", " ", "x"}], "]"}]}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", " ", "0", " ", ",", "Pi"}], "}"}]}], "]"}], "*", 
+  RowBox[{"2", "/", 
+   RowBox[{"(", 
+    RowBox[{"n", " ", "c", " ", "Pi"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.560591744572707*^9, 3.5605917926745443`*^9}, {
+   3.560591912802312*^9, 3.560591915297011*^9}, {3.560592388075945*^9, 
+   3.560592406421034*^9}, {3.560592451052703*^9, 3.560592486822567*^9}, 
+   3.560594349748041*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"4", " ", 
+   RowBox[{"Sin", "[", 
+    RowBox[{"n", " ", "\[Pi]"}], "]"}]}], 
+  RowBox[{"c", " ", "n", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "4"}], "+", 
+     SuperscriptBox["n", "2"]}], ")"}], " ", "\[Pi]"}]]], "Output",
+ CellChangeTimes->{3.560592488037703*^9, 3.560594351132539*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", "t"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "==", 
+      RowBox[{
+       RowBox[{"a", "^", "2"}], 
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"u", "[", 
+          RowBox[{"x", ",", "t"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "2"}], "}"}]}], "]"}]}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"x", ",", "0"}], "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"0", ",", "t"}], "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"1", ",", "t"}], "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "1"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "0"}], "]"}], "\[Equal]", 
+      RowBox[{"Sin", "[", 
+       RowBox[{"2", " ", "Pi", " ", "x"}], "]"}]}], ","}], 
+    "\[IndentingNewLine]", "}"}], ",", " ", "u", ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "t"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5605919940756397`*^9, 3.560592165201437*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"DSolve", "::", "deqn"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Equation or list of equations expected instead of \
+\[NoBreak]\\!\\(Null\\)\[NoBreak] in the first argument \
+\[NoBreak]\\!\\({\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"u\\\", TagBox[\\((2, \
+0)\\), Derivative], Rule[MultilineFunction, None]]\\)\\)[\\(\\(x, t\\)\\)]\\)\
+\\) \[Equal] \\(\\(a\\^2\\\\ \\(\\(\\(\\(\\*SuperscriptBox[\\\"u\\\", TagBox[\
+\\((0, 2)\\), Derivative], Rule[MultilineFunction, None]]\\)\\)[\\(\\(x, t\\)\
+\\)]\\)\\)\\)\\)\\)\\), \\(\\(\\(\\(u[\\(\\(x, 0\\)\\)]\\)\\) \[Equal] \
+0\\)\\), \\(\\(\\(\\(u[\\(\\(0, t\\)\\)]\\)\\) \[Equal] 0\\)\\), \
+\\(\\(\\(\\(u[\\(\\(1, t\\)\\)]\\)\\) \[Equal] 0\\)\\), \
+\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"u\\\", TagBox[\\((0, 1)\\), \
+Derivative], Rule[MultilineFunction, None]]\\)\\)[\\(\\(x, 0\\)\\)]\\)\\) \
+\[Equal] \\(\\(Sin[\\(\\(2\\\\ \[Pi]\\\\ x\\)\\)]\\)\\)\\)\\), Null}\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/DSolve/deqn\\\", ButtonNote -> \
+\\\"DSolve::deqn\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.560592142544683*^9, 3.5605921732116823`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"2", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "t"}], "]"}], "\[Equal]", 
+      RowBox[{
+       SuperscriptBox["a", "2"], " ", 
+       RowBox[{
+        SuperscriptBox["u", 
+         TagBox[
+          RowBox[{"(", 
+           RowBox[{"0", ",", "2"}], ")"}],
+          Derivative],
+         MultilineFunction->None], "[", 
+        RowBox[{"x", ",", "t"}], "]"}]}]}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"x", ",", "0"}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"0", ",", "t"}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"1", ",", "t"}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "1"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "0"}], "]"}], "\[Equal]", 
+      RowBox[{"Sin", "[", 
+       RowBox[{"2", " ", "\[Pi]", " ", "x"}], "]"}]}], ",", "Null"}], "}"}], 
+   ",", "u", ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "t"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.560592089873803*^9, {3.560592142670187*^9, 3.560592173213614*^9}}]
+}, Open  ]]
+},
+WindowSize->{679, 511},
+WindowMargins->{{88, Automatic}, {61, Automatic}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 649, 17, 30, "Input"],
+Cell[1231, 41, 339, 10, 54, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1607, 56, 1525, 47, 153, "Input"],
+Cell[3135, 105, 1258, 21, 96, "Message"],
+Cell[4396, 128, 1477, 48, 55, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
