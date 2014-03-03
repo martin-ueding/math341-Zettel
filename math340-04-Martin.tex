@@ -128,13 +128,18 @@ Falls $\alpha$ positiv ist, wird die Differentialgleichung für $w$ durch Kosinu
 
 Für $v$ setze ich nun $GH$ ein und erhalte:
 \[
-	\frac{G''}{G} + \alpha = \frac{H''}{H} =: - \beta
+	\frac{G''}{G} + \alpha = - \frac{H''}{H} =: \beta
+	\quad\Rightarrow\quad
+	\frac{G''}{G} = - \del{\alpha - \beta}
+	,\quad
+	\frac{H''}{H} = - \beta
 \]
 
-Somit erhalte ich zwei weitere Gleichungen, die ich einfach lösen kann. Ich erhalte als Integralbasen:
+Somit erhalte ich zwei weitere Gleichungen, die ich einfach unter Benutzung der
+gleichen Fallunterscheidung lösen kann. Ich erhalte als Integralbasen:
 \[
 	B_G = \set{
-	\cos\del{\sqrt{\alpha + \beta} x}, \sin\del{\sqrt{\alpha + \beta} t}
+	\cos\del{\sqrt{\alpha - \beta} x}, \sin\del{\sqrt{\alpha - \beta} t}
 	}
 	, \quad
 	B_H = \set{
@@ -146,37 +151,60 @@ Die Funktion $u$ ist nun eine Linearkombination aus Produkten, die jeweils aus
 einer Basisfunktion bestehen. Da allerdings die Randbedingungen festlegen, dass
 am Rand die Funktion $0$ sein soll, können nur Sinusterme vorkommen.
 
-Außerdem muss dann $\sqrt{\alpha + \beta} a = m \pi$ und $\sqrt{\beta} b = n \pi$ ($m,
+Außerdem muss dann $\sqrt{\alpha - \beta} a = m \pi$ und $\sqrt{\beta} b = n \pi$ ($m,
 n \in \mathbb N$) gelten, damit bei $x=a$, $y=b$ und $t=0$ die Funktion
 ebenfalls $0$ ist. Daraus folgt:
 \[
 	\beta = \frac{n^2 \pi^2}{b^2}
 	,\quad
-	\alpha = \frac{m^2 \pi^2}{a^2} - \frac{n^2 \pi^2}{b^2}
+	\alpha = \frac{m^2 \pi^2}{a^2} + \frac{n^2 \pi^2}{b^2}
 \]
 
 Somit muss also die Funktion sein:
 \[
 	u(x, y, t)
-	= \sum_m \sum_n a_m a_n \sin\del{\frac{m\pi}a x}
+	= \sum_{m=1}^\infty \sum_{n=1}^\infty a_m a_n \sin\del{\frac{m\pi}a x}
 	\sin\del{\frac{n\pi}b y}
-	\sin\del{\sqrt{\frac{m^2\pi^2}{a^2} - \frac{n^2\pi^2}{b^2}} c t}
+	\sin\del{\sqrt{\frac{m^2\pi^2}{a^2} + \frac{n^2\pi^2}{b^2}} c t}
 \]
 
 Diese Funktion erfüllt für beliebige $a_m$ und $a_n$ die Anfangsbedingung
-für $u(x, y, 0)$, und auch auch alle Randbedingungen. Nun muss ich noch die
-$a_m$ und $a_n$ so wählen, dass die Bedingung für $\dot u$ erfüllt ist.
+für $u(x, y, 0)$, und auch auch alle Randbedingungen.
 
-Für $t=0$ soll für $\dot u$ gelten:
+Nun muss ich noch die $a_m$ und $a_n$ so wählen, dass die Bedingung für $\dot
+u$ erfüllt ist. Für $t=0$ soll für $\dot u$ gelten:
 \[
-	\sum_m \sum_n a_m a_n \sqrt{\frac{m^2\pi^2}{a^2} - \frac{n^2\pi^2}{b^2}} c \sin\del{\frac{m\pi}a x}
+	\dot u(x, y, 0) =
+	\sum_{m=1}^\infty \sum_{n=1}^\infty \underbrace{a_m a_n \sqrt{\frac{m^2\pi^2}{a^2} + \frac{n^2\pi^2}{b^2}} c}_{C_{mn}} \sin\del{\frac{m\pi}a x}
 	\sin\del{\frac{n\pi}b y}
-	= x(x-a)(y-b)
+	= xy(x-a)(y-b)
 \]
 
-Das ist letztlich eine zweidimensionale Fourierreihe. Die Koeffizenten $a_m$ und $a_n$ können durch Projektion bestimmt werden.
+Das ist letztlich eine zweidimensionale Fourierreihe. Die Koeffizenten $a_m$
+und $a_n$ können durch Projektion bestimmt werden.
 
-\fehlt
+Aus dem vorherigen Aufgabenblatt wissen wir für die Parabel, die ungerade fortgesetzt wird:
+\[
+	x(x-a) = \sum_{n=1}^\infty \frac{4a^2}{\pi^3 n^3} \del{(-1)^n -1} \sin\del{\frac{\pi n}a x}
+\]
+
+Somit können wir diese doppelte Parabel als Fourier-Reihe schreiben:
+\[
+	x(x-a)y(y-b)
+	= \sum_{m=1}^\infty \sum_{n=1}^\infty \underbrace{\frac{16 a^2 b^2}{\pi^6 m^3 n^3} \del{(-1)^m -1} \del{(-1)^n -1}}_{C_{mn}} \sin\del{\frac{m \pi}{a} x} \sin\del{\frac{n \pi}{b} x}
+\]
+
+Jetzt wählen wir die Vorfaktoren $a_m$ und $a_n$ einfach so, dass sie den Koeffizenten in der doppelten Parabel entsprechen.
+
+Die generelle Lösung $u$ ist also:
+\[
+	u =
+	\sum_{m=1}^\infty \sum_{n=1}^\infty
+	\frac{16 a^2 b^2}{\pi^6 m^3 n^3} \frac{ \del{(-1)^m -1} \del{(-1)^n -1}}
+	{\sqrt{\frac{m^2\pi^2}{a^2} + \frac{n^2\pi^2}{b^2}} c}
+	\sin\del{\frac{m \pi}{a} x} \sin\del{\frac{n \pi}{b} x}
+	\sin\del{\sqrt{\frac{m^2\pi^2}{a^2} + \frac{n^2\pi^2}{b^2}} c t}
+\]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              Laplacegleichung                               %
@@ -220,9 +248,7 @@ Die Vektoren $\vec a$ müssen also normiert sein.
 \section{Cauchy-Probleme}
 \label{3}
 
-\subsection{die Erste}
-
-\fehlt
+\stepcounter{subsection}
 
 \subsection{die Zweite}
 
@@ -235,12 +261,7 @@ Ich benutze die Lösungsformel:
 	\frac{1}{2 \pi} \int_{\abs{\vec y - \vec x} \leq t} \dif \vec \tau_y \frac{u_1\del{\vec y}}{\sqrt{t^2 - \abs{\vec y - \vec x}^2}}
 \]
 
-Das Integral ist auf einer Einheitskreisfläche. Daher gilt:
-\[
-	\dif \vec \tau_y = \dif y_1 \dif y_2
-\]
-
-Die Grenzen sind:
+Das Integral ist auf einer Einheitskreisfläche. Daher gilt: \( \dif \vec \tau_y = \dif y_1 \dif y_2 \). Die Grenzen sind:
 \[
 	x_1 - t \leq y_1 \leq x_1 + t
 	,\quad
