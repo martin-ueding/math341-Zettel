@@ -1,0 +1,302 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{8}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Ueding, Manz, Lemmer}}
+\fancyfoot[R]{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c}
+		Aufgabe & \ref 1 & \ref 2 & $\sum$   \\
+		\hline
+		Punkte & \punkte / 10 & \punkte / 5 & \punkte / 15
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Eigenschaften der Legendrepolynome}
+\label 1
+
+\subsection{$P$ berechnen}
+
+Wir benutzen die Formel \eqref{eq:leibniz} und setzen ein:
+\begin{align*}
+	P_1(x) &= x \\
+	P_2(x) &= \frac{3}{2} x^2-\frac{1}{2} \\
+	P_3(x) &= \frac{5}{2} x^3-\frac{3}{2} x \\
+	P_4(x) &= \frac{35}{8} x^4-\frac{15}{4}+\frac{3}{8} x^2
+\end{align*}
+
+\subsection{$P(\pm 1)$}
+
+In der anderen Aufgabe haben wir bereits hergeleitet, dass gilt
+\eqref{eq:leibniz}:
+\[
+	P_l(x) = \frac{1}{2^l l!} \dod[l]{}x \del{x^2-1}^l
+	= \frac{1}{2^l} \sum_{i=0}^l \binom{l}{i} (x-1)^i (x+1)^{l-i}
+\]
+
+Wenn wir dort $x = 1$ einsetzen, sind alle Potenten von $(x-1)$ gleich $0$,
+außer wenn $i = 0$ ist. Dann ist allerdings $(x+1)^l$ gerade $2^l$. Somit ist
+$P_l(1) = 1$.
+
+Für $x = -1$ gilt das gleiche Argument, die verbleibende Klammer ist allerdings
+$(-2)^l$, so dass $P_l(-1) = (-1)^l$ bleibt.
+
+\subsection{Orthogonalität}
+
+\fehlt
+
+\subsection{Differentialgleichung erfüllen}
+
+\fehlt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+\section{Dirichtletproblem}
+\label 2
+
+Die Randbedingung formen wir um:
+\[
+	u(x, y, z) = z^4
+	\quad\Leftrightarrow\quad
+	u(r, \theta, \phi) = r^4 \cos^4 \theta
+\]
+
+Wir setzen $r = R$ ein und erhalten als Randbedingung eine Funktion auf der
+Kugelfläche:
+\[
+	u_R(\theta, \phi) = R^4 \cos^4 \theta
+\]
+
+Da $\pd{u_R}\phi = 0$, können wir $\phi$ aus den Argumenten streichen. Außerdem
+setzen wir $\cos \theta =: x$ um die weiteren Rechnungen übersichtlicher zu
+gestalten. Somit erhalten wir als Randbedingung:
+\[
+	\tilde u(x) = x^4
+\]
+
+Diese Funktion entwickeln wir nun nach Kugelflächenfunktionen. Aus der
+Symmetrie in $\phi$ müssen die $m = 0$ sein. Somit bleiben die $l$. Die
+Koeffizienten $K_l^m$ bestimmen wir über das Skalarprodukt:
+\[
+\inner{\tilde u}{Y_l^0} = \int_0^{2\pi} \dif \phi \int_{-1}^1 \dif x \, u Y_l^{0*}
+\]
+
+Dabei sind die Kugelflächenfunktionen gegeben durch:
+\begin{align*}
+Y_l^m(\theta, \phi) &= \sqrt{\frac{2l+1}{4\pi} \frac{(l-m)!}{(l+m)!}} P_l^m(\cos \theta) \ee^{\ii m \phi} \\
+	\intertext{%
+	Allerdings ist hier gerade $m = 0$, so dass sich das ganze noch weiter
+	vereinfacht.
+	}
+									   &= \sqrt{\frac{2l+1}{4\pi}} P_l(\cos \theta) \\
+	\intertext{%
+	Wir setzen die Formel von Rodriguez ein.
+	}
+									   &= \sqrt{\frac{2l+1}{4\pi}} \frac{1}{2^l l!} \dod[l]{}x \del{x^2-1}^l
+\end{align*}
+
+\subsection{Bestimmung der Koeffizienten}
+
+Wir setzen unsere Funktion $\tilde u$ ein und bestimmen somit die
+Koeffizienten. Dabei haben wir $\int \dif \phi$ schon zu $2 \pi$ ausgewertet
+und gekürzt.
+\[
+K_l^0 = \sqrt{\del{2l+1} \pi} \frac{1}{2^l l!} R^4 \int_{-1}^1 \dif x \, x^4 \dod[l]{}x \del{x^2-1}^l
+\]
+
+An dieser Stelle müssen wir in $l$ eine Fallunterscheidung machen.
+
+\paragraph{Fall $l = 0$}
+
+Das Integral vereinfacht sich, weil das Polynom entfällt. Somit bleibt ein
+Polynom, dessen Integral ist:
+\[
+\sbr{\frac 15 x^5}_{-1}^1
+\]
+
+Der erste Koeffizient ist damit dann:
+\[
+K_0^0 = \frac 25 \sqrt{\pi} R^4
+\]
+
+\paragraph{Fall $l > 0$}
+
+Jetzt müssen wir partielle Integration benutzen, wir erhalten:
+\[
+K_l^0 = \underbrace{\sbr{x^4 \dod[l-1]{}x \del{x^2-1}^l}_{-1}^1}_{=0} - \int_{-1}^1 \dif x \, 4 x^3 \dod[l-1]{}x \del{x^2-1}^l
+\]
+
+Die eckige Klammer wird $0$. Dies können wir dadurch sehen, dass wir die
+Produktregel $l-1$ mal anwenden und sich dann ein pascalsches Dreieck aus
+Summanden bildet. Diese können wir analog zu den binomischen Formeln schreiben
+als:
+\begin{equation}
+	\label{eq:leibniz}
+	\dod[l]{}x \del{x^2-1}^l = l! \sum_{i=0}^l \binom{l}{i} (x-1)^i (x+1)^{l-i}
+\end{equation}
+
+Wenn wir dort $-1$ oder $1$ einsetzen, wird immer $0$ herauskommen. Somit sind
+alle derartigen Klammern, die noch in den weiteren Fällen auftreten werden, 0
+und wir werden sie daher in den nächsten Fällen weglassen.
+
+Für den jetzt verbleibenden Integranden müssen wir erneut eine
+Fallunterscheidung machen.
+
+\paragraph{Fall $l = 1$}
+
+In diesem Fall ist der Integrand wieder einfach und wir erhalten als Integral:
+\[
+\sbr{x^4}_{-1}^1 = 0
+\]
+
+Somit ist $R_1^0 = 0$. Alle ungerade Koeffizienten werden 0 sein, weil wir eine
+gerade Funktion entwickeln.
+
+\paragraph{Fall $l > 1$}
+
+Wieder führen wir eine partielle Integration aus und erhalten:
+\[
+K_l^0 = \int_{-1}^1 \dif x \, 12 x^2 \dod[l-2]{}x \del{x^2-1}^l
+\]
+
+\paragraph{Fall $l = 2$}
+
+Das Integral ist:
+\[
+\sbr{4x^3}_{-1}^1 = 8
+\]
+
+Daraus folgt für den Koeffizienten:
+\[
+K_2^0 = \sqrt{5 \pi} R^4
+\]
+
+\paragraph{Fall $l > 2$}
+
+Durch partielle Integration erhalten wir:
+\[
+K_l^0 = - \int_{-1}^1 \dif x \, 24 x \dod[l-3]{}x \del{x^2-1}^l
+\]
+
+\paragraph{Fall $l = 3$}
+
+Das Integral ist:
+\[
+\sbr{12 x^2}_{-1}^1 = 0
+\]
+
+\paragraph{Fall $l > 3$}
+
+Partielle Integral liefert:
+\[
+K_l^0 = \int_{-1}^1 \dif x \, 24 \dod[l-4]{}x \del{x^2-1}^l
+\]
+
+\paragraph{Fall $l = 4$}
+
+Das Integral ist:
+\[
+\sbr{24x}_{-1}^1 = 48
+\]
+
+Der Koeffizient ist:
+\[
+K_4^0 = \frac{3}{8} \sqrt{\pi} R^4
+\]
+
+\paragraph{Fall $l > 4$}
+
+Eine weitere partielle Integration wird 0 ergeben. Also sind alle Koeffizienten
+nach dem vierten gleich 0.
+
+\subsection{Funktion zusammensetzen}
+
+Wir stellen die interessanten Koeffizienten zusammen:
+\[
+K_0^0 = \frac 25 \sqrt{\pi} R^4
+,\quad
+K_2^0 = \sqrt{5 \pi} R^4
+,\quad
+K_4^0 = \frac{3}{8} \sqrt{\pi} R^4
+\]
+
+Somit können wir die Funktion als Linearkombination der Kugelflächenfunktionen
+darstellen:
+\[
+\tilde u(x) = \del{\frac 25 P_0(x) + \sqrt{5} P_2(x) + \frac{3}{8} P_4(x)} \sqrt{\pi} R^4
+\]
+
+Der Sinn der ganzen Sache war jetzt der, dass die Kugelflächenfunktionen die
+Laplacegleichung lösen. Wir fügen noch ein $\del{r/R}^3$ ein, damit wir eine
+räumliche Kugelflächenfunktion erhalten. Somit die Lösung der Laplacegleichung
+mit den Randbedingungen:
+\[
+u(r, \theta, \phi) = \del{\frac rR}^3 \del{\frac 25 P_0(\cos \theta) + \sqrt{5} P_2(\cos \theta) + \frac{3}{8} P_4(\cos \theta)} \sqrt{\pi} R^4
+\]
+
+Wir können noch $r = \sqrt{x^2+y^2+z^2}$ sowie $\cos \theta =: \hat z :=
+\frac{z}{\sqrt{x^2+y^2+z^2}}$ einsetzen und erhalten so:
+\[
+	u(x, y, z) = \del{\frac{\sqrt{x^2+y^2+z^2}}R}^3
+					   \del{\frac 25 P_0\del{\hat z} + \sqrt{5} P_2\del{\hat z} + \frac{3}{8} P_4\del{\hat z}}
+		   \sqrt{\pi} R^4
+\]
+
+Außerdem können wir die Legendrepolynome einsetzen und erhalten:
+\[
+	u(x, y, z) = \sqrt{x^2+y^2+z^2}^3
+	\del{\frac 25 + \sqrt{5} \half \del{3 \hat z^2-1} + \frac{3}{8} \frac 18 \del{35 \hat z^4 - 30 \hat z^2 + 3}}
+		   \sqrt{\pi} R
+\]
+
+Wir fassen die Potenzen zusammen und erhalten:
+\[
+	u(x, y, z) = \sqrt{x^2+y^2+z^2}^3
+		   \frac{\sqrt{\pi} R}{320} \del{173- 160 \sqrt{5} + \del{- 450 + 480 \sqrt{5}} \hat z^2 + 525 \hat z^4}
+\]
+
+
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
