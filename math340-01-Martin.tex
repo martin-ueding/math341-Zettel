@@ -1,0 +1,298 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\documentclass[11pt, ngerman]{article}
+
+\usepackage[a4paper, left=3cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[activate]{pdfcprot}
+\usepackage[cdot, squaren]{SIunits}
+\usepackage[iso]{isodate}
+\usepackage[parfill]{parskip}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{color}
+\usepackage{commath}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+
+\usepackage[charter]{mathdesign}
+
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+
+\hypersetup{
+	breaklinks=false,
+	citecolor=darkgreen,
+	colorlinks=true,
+	linkcolor=black,
+	menucolor=black,
+	urlcolor=darkblue,
+}
+
+\setlength{\columnsep}{2cm}
+
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\asinh}{arsinh}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\diam}{diam}
+
+\newcommand{\dalambert}{\mathop{{}\Box}\nolimits}
+\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\emesswert}{\del{\messwert \pm \messwert}}
+\newcommand{\e}[1]{\cdot 10^{#1}}
+\newcommand{\fehlt}{\textcolor{red}{Hier fehlen noch Inhalte.}}
+\newcommand{\half}{\frac 12}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\laplace}{\mathop{{}\bigtriangleup}\nolimits}
+\newcommand{\messwert}{\textcolor{blue}{\square}}
+\newcommand{\punkte}{\textcolor{white}{xxxxx}}
+\newcommand{\tens}[1]{\boldsymbol{#1}}
+\newcommand{\vnabla}{\vec \nabla}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{1}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Martin Ueding}}
+\fancyfoot[R]{\footnotesize{Seite \thepage}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\setcounter{section}{0}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c}
+		Aufgabe & 1.1 & 1.2 & 1.3 & $\Sigma$   \\
+		\hline
+		Punkte & \punkte / 4 & \punkte / 4 & \punkte / 2 & \punkte / 10
+	\end{tabular}
+\end{table}
+
+\section{Differentialgleichungen}
+
+Ich gehe davon aus dass $y'$ die Funktion $\pd yx(x)$ meint.
+
+\subsection{die Einfache}
+
+Dies geht mit der Separation der Variablen:
+%
+\begin{align*}
+	\dod yx &= \exp\del{2x-y} \\
+	\dif y \exp\del y &= \exp\del{2x} \dif x \\
+	\int \dif y \exp \del y &= \int \dif x \exp\del{2x} \\
+	\exp\del y &= \frac 12 \exp\del{2x} + c_1 \\
+			 y &= \ln\del{\frac 12 \exp\del{2x} + c_1}
+\end{align*}
+
+\stepcounter{subsection}
+
+\subsection{die Schwere}
+
+Es sollen alle Lösungen zu folgender Differentialgleichung bestimmt werden:
+\[
+	\od[2] yx + 4y = x^2 + 5 \cos\del{2x}
+\]
+
+Dieser Ansatz stammt aus \cite[Seite 181]{heuser-dgl}.
+
+Ich beginne damit, die homogene Differentialgleichung zu lösen. Diese ist
+einfach mit einem Exponentialansatz (oder hier im Realfall durch Kosinus und
+Sinus) gelöst. Die Integralbasis $B$ für die homogene Gleichung ist:
+\[
+	B = \set{\cos(2x), \sin(-2ix)}
+\]
+
+Nun muss ich noch eine partikuläre Lösung bestimmen. Dazu wähle ich den Ansatz
+der Variiation der Konstanten. Die Funktionen in der Basis bezeichne ich mit
+$u_1$ und $u_2$. Das Gleichungssystem ist:
+\begin{align*}
+	\dot c_1 u_1 + \dot c_2 u_2 &= 0 \\
+	\dot c_1 \dot u_1 + \dot c_2 \dot u_2 &= x^2 + 5 \cos(2x)
+\end{align*}
+
+Dort setze ich die beiden Basisfunktionen (und deren Ableitung) ein und löse
+mit dem Gaußalgorithmus:
+\begin{align*}
+	\begin{pmatrix}
+		\cos(2x) & \sin(2x) & 0 \\
+		- 2 \sin(2x) & 2 \cos(2x) & x^2 + 5 \cos(2x)
+	\end{pmatrix}
+	&\leadsto
+	\begin{pmatrix}
+		1 & \tan(2x) & 0 \\
+		-1 & \cot(2x) & \frac 12 \csc(2x) \del{x^2 + 5 \cos(2x)}
+	\end{pmatrix} \\
+	&\leadsto
+	\begin{pmatrix}
+		1 & \tan(2x) & 0 \\
+		0 & \tan(2x) + \cot(2x) & \frac 12 \csc(2x) \del{x^2 + 5 \cos(2x)}
+	\end{pmatrix} \\
+	\intertext{Ich fasse den Tangens und Kotangens zusammen:}
+	&\leadsto
+	\begin{pmatrix}
+		1 & \tan(2x) & 0 \\
+		0 & \frac{\sin(2x)}{\cos(2x)} + \frac{\cos(2x)}{\sin(2x)} & \frac 12 \csc(2x) \del{x^2 + 5 \cos(2x)}
+	\end{pmatrix} \\
+	&\leadsto
+	\begin{pmatrix}
+		1 & \tan(2x) & 0 \\
+		0 & \frac{\sin^2(2x) + \cos^2(2x)}{\cos(2x)\sin(2x)} & \frac 12 \csc(2x) \del{x^2 + 5 \cos(2x)}
+	\end{pmatrix} \\
+	\intertext{$\cos^2(x) + \sin^2(x) = 1$.}
+	&\leadsto
+	\begin{pmatrix}
+		1 & \tan(2x) & 0 \\
+		0 & \sec(2x) & \frac 12 \del{x^2 + 5 \cos(2x)}
+	\end{pmatrix} \\
+	&\leadsto
+	\begin{pmatrix}
+		1 & \tan(2x) & 0 \\
+		0 & \tan(2x) & \frac 12 \sin(2x) \del{x^2 + 5 \cos(2x)}
+	\end{pmatrix} \\
+	&\leadsto
+	\begin{pmatrix}
+		1 & 0 & -\frac 12 \sin(2x) \del{x^2 + 5 \cos(2x)} \\
+		0 & 1 & \frac 12 \cos(2x) \del{x^2 + 5 \cos(2x)}
+	\end{pmatrix}
+\end{align*}
+
+Jetzt integriere ich nach $x$, um $c_1$ zu erhalten:
+\begin{align*}
+	\dot c_1 &= -\frac 12 \sin(2x) \del{x^2 + 5 \cos(2x)} \\
+	c_1 &= -\frac 12 \int \dif x \sin(2x) \del{x^2 + 5 \cos(2x)} \\
+	\intertext{Dieses Integral kann durch (mehrfache) partielle Integration gelöst werden.}
+		&= -\frac{1}{8} \left(\left(1-2 x^2\right) \cos (2 x)+2 x
+   \sin (2 x)-5 \cos ^2(2 x)\right)
+\end{align*}
+
+Analog erhalte ich $c_2$:
+\begin{align*}
+	\dot c_2 &= \frac 12 \cos(2x) \del{x^2 + 5 \cos(2x)} \\
+	c_2 &= \frac 12 \int \dif x \cos(2x) \del{x^2 + 5 \cos(2x)} \\
+	c_2 &= \frac{1}{16} \left(2 \left(2 x^2-1\right) \sin (2 x)+20
+   x+5 \sin (4 x)+4 x \cos (2 x)\right)
+\end{align*}
+
+\[
+	y_p(x) = c_1(x) \cos(2x) + c_2(x) \sin(2x)
+\]
+
+Die allgemeine Lösung ist:
+\[
+	y(x) = \del{c_1(x) + c_3} \cos(2x) + \del{c_2(x) + c_4} \sin(2x)
+\]
+
+Oder mit allem eingesetzt:
+\begin{align*}
+	y(x) &=
+	\del{-\frac{1}{16} \left(\left(2-4 x^2\right) \cos (2 x)+4 x
+   \sin (2 x)-10 \cos ^2(2 x)\right) + c_3} \cos(2x) \\
+	&\quad + \del{\frac{1}{16} \left(2 \left(2 x^2-1\right) \sin (2 x)+20
+   x+5 \sin (4 x)+4 x \cos (2 x)\right) + c_4} \sin(2x)
+\end{align*}
+
+Laut \textit{Mathematica} ist die Lösung zu dieser
+Differentialgleichung:
+\begin{align*}
+y(x) &= c_4 \sin (2 x)+c_3 \cos (2 x) \\
+		 &\quad+\frac{1}{16} \left(4 x^2 \sin ^2(2 x)+4 x^2
+   \cos ^2(2 x)-2 \sin ^2(2 x)\right) \\
+   &\quad+\frac{1}{16} \left( 20 x \sin (2 x)+5 \sin (2 x) \sin (4 x)+10
+   \cos ^3(2 x)-2 \cos ^2(2 x)\right)
+\end{align*}
+
+Es ist zwar etwas mühsam die jeweils passenden Terme zu finden, allerdings
+scheint meine Lösung zu stimmen.
+
+\section{Laplace-Operator}
+
+\subsection{Polarkoordinaten}
+
+Gegeben ist eine Funktion:
+\[
+	U(r, \phi) := u\del{r \cos(\phi), r \sin(\phi)}
+\]
+
+Es ist zu zeigen, dass gilt:
+\[
+	\laplace u = \pd[2] ux + \pd[2] uy = \pd[2] Ur + \frac 1r \pd Ur + \frac
+	1{r^2} \pd[2] U\phi
+\]
+
+Ich beginne mit $\pd U r$:
+\[
+	\pd Ur = \od ur = \pd ux \cos(\phi) + \pd uy \sin(\phi)
+\]
+
+Dies leite ich noch einmal nach $r$ ab. Dabei kann ich den Kosinus und Sinus
+jeweils vor die Ableitung ziehen, da diese nicht von $r$ abhängen.
+\[
+	\pd[2] Ur = \od[2] ur = \pd[2] ux \cos^2(\phi) + \pd[2] uy \sin^2(\phi)
+\]
+
+Zuletzte bestimme ich $\pd[2] U\phi$:
+\[
+	\pd[2] U\phi = \od[2] u\phi = \pd[2] ux r^2 \sin^2(\phi) - \pd ux r
+	\cos(\phi) + \pd[2] uy r^2 \cos^2(\phi) - r \pd uy \sin(\phi)
+\]
+
+Diese Teile setze ich jetzt ein und fasse Terme mit $\cos^2(\phi) +
+\sin^2(\phi) = 1$ zusammen:
+%
+\begin{align*}
+	\dpd[2] Ur + \frac 1r \dpd Ur + \frac 1{r^2} \dpd[2] U\phi
+	&=\dpd[2] ux \cos^2(\phi) + \dpd[2] uy \sin^2(\phi) \\
+	&\quad+ \frac 1r \dpd ux \cos(\phi) + \frac 1r \dpd uy \sin(\phi) \\
+	&\quad+ \dpd[2] ux \sin^2(\phi) - \frac 1r \dpd ux r \cos(\phi) + \dpd[2]
+	uy \cos^2(\phi) - \frac 1r \dpd uy \sin(\phi) \\
+	&= \dpd[2] ux + \dpd[2] uy \\
+	&= \laplace u
+\end{align*}
+
+Somit gilt die Relation.
+
+\section{harmonische Funktion}
+
+\subsection{Überprüfung}
+
+Es ist zu zeigen, dass $f = \frac 1r$ eine harmonische Funktion ist.
+
+Ich bestimme die Ableitungen der Funktion $f$:
+\[
+	\vnabla f = \frac{1}{r} \begin{pmatrix}
+		x \\ y \\ z
+	\end{pmatrix} = \frac{\vec r}{r}
+	,\quad
+	\laplace f = \sum_i \del{- \frac12 \frac{2x_i}{r^3} x_i + \frac 1r 1} = 0
+\]
+
+$\laplace f = 0$ gilt also.
+
+\bibliography{../../zentrale_BibTeX/Central}
+\bibliographystyle{plain}
+
+\end{document}
