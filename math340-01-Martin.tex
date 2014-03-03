@@ -43,14 +43,21 @@
 \DeclareMathOperator{\card}{card}
 \DeclareMathOperator{\diam}{diam}
 
+\newcommand{\dalambert}{\mathop{{}\Box}\nolimits}
+\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
+\newcommand{\ee}{\mathrm e}
 \newcommand{\emesswert}{\del{\messwert \pm \messwert}}
 \newcommand{\e}[1]{\cdot 10^{#1}}
 \newcommand{\fehlt}{\textcolor{red}{Hier fehlen noch Inhalte.}}
 \newcommand{\half}{\frac 12}
-\newcommand{\laplace}{\vnabla^2}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\laplace}{\mathop{{}\bigtriangleup}\nolimits}
 \newcommand{\messwert}{\textcolor{blue}{\square}}
 \newcommand{\punkte}{\textcolor{white}{xxxxx}}
+\newcommand{\tens}[1]{\boldsymbol{#1}}
 \newcommand{\vnabla}{\vec \nabla}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
 
 \newcommand{\themodul}{math340}
 \newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
@@ -121,13 +128,14 @@ Sinus) gelöst. Die Integralbasis $B$ für die homogene Gleichung ist:
 
 Nun muss ich noch eine partikuläre Lösung bestimmen. Dazu wähle ich den Ansatz
 der Variiation der Konstanten. Die Funktionen in der Basis bezeichne ich mit
-$U_1$ und $u_2$. Das Gleichungssystem ist:
+$u_1$ und $u_2$. Das Gleichungssystem ist:
 \begin{align*}
 	\dot c_1 u_1 + \dot c_2 u_2 &= 0 \\
 	\dot c_1 \dot u_1 + \dot c_2 \dot u_2 &= x^2 + 5 \cos(2x)
 \end{align*}
 
-Dort setze ich die beiden Basisfunktionen ein und löse mit dem Gaußalgorithmus:
+Dort setze ich die beiden Basisfunktionen (und deren Ableitung) ein und löse
+mit dem Gaußalgorithmus:
 \begin{align*}
 	\begin{pmatrix}
 		\cos(2x) & \sin(2x) & 0 \\
@@ -261,7 +269,8 @@ Diese Teile setze ich jetzt ein und fasse Terme mit $\cos^2(\phi) +
 	&\quad+ \frac 1r \dpd ux \cos(\phi) + \frac 1r \dpd uy \sin(\phi) \\
 	&\quad+ \dpd[2] ux \sin^2(\phi) - \frac 1r \dpd ux r \cos(\phi) + \dpd[2]
 	uy \cos^2(\phi) - \frac 1r \dpd uy \sin(\phi) \\
-	&= \dpd[2] ux + \dpd[2] uy
+	&= \dpd[2] ux + \dpd[2] uy \\
+	&= \laplace u
 \end{align*}
 
 Somit gilt die Relation.
