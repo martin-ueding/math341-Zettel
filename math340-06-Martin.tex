@@ -1,0 +1,172 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\documentclass[11pt, ngerman, fleqn]{article}
+
+\usepackage[a4paper, left=3cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[activate]{pdfcprot}
+\usepackage[cdot, squaren]{SIunits}
+\usepackage[iso]{isodate}
+\usepackage[parfill]{parskip}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{color}
+\usepackage{commath}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{tikz}
+
+\usepackage[charter, greekuppercase=italicized]{mathdesign}
+
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+
+\hypersetup{
+	breaklinks=false,
+	citecolor=darkgreen,
+	colorlinks=true,
+	linkcolor=black,
+	menucolor=black,
+	urlcolor=darkblue,
+}
+
+\setlength{\columnsep}{2cm}
+
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\asinh}{arsinh}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\diam}{diam}
+
+\newcommand{\dalambert}{\mathop{{}\Box}\nolimits}
+\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\emesswert}{\del{\messwert \pm \messwert}}
+\newcommand{\e}[1]{\cdot 10^{#1}}
+\newcommand{\fehlt}{\textcolor{red}{Hier fehlen noch Inhalte.}}
+\newcommand{\half}{\frac 12}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\laplace}{\mathop{{}\bigtriangleup}\nolimits}
+\newcommand{\messwert}{\textcolor{blue}{\square}}
+\newcommand{\punkte}{\textcolor{white}{xxxxx}}
+\newcommand{\tens}[1]{\boldsymbol{#1}}
+\newcommand{\vnabla}{\vec \nabla}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{6}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Ueding, Manz, Lemmer}}
+\fancyfoot[R]{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c}
+		Aufgabe & 6.1 & 6.2 & \ref{1} & $\sum$   \\
+		\hline
+		Punkte & \punkte / 3 & \punkte / 3 & \punkte / 6 & \punkte / 12
+	\end{tabular}
+\end{table}
+
+
+\setcounter{section}{3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Dirichletproblem                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Dirichletproblem}
+\label 1
+
+In Polarkoordinaten ist die Laplacegleichung:
+\[
+	\laplace u
+	= \frac 1\rho \dpd{}\rho \del{\rho \dpd u \rho} + \frac{1}{\rho^2} \dpd[2] u \phi
+	= 0
+\]
+
+Zur Separation wählen wir:
+\[
+	u(\rho, \phi) = v(\rho) w(\phi)
+\]
+
+In die Differentialgleichung eingesetzt erhalten wir nach einigen Umformungen:
+\[
+	\frac{w''}{w} = - \alpha^2
+	\quad \wedge \quad
+	\rho^2 v'' + \rho v' - \alpha^2 v = 0
+\]
+
+Die Gleichung in $w$ können wir durch $w(\phi) = c_1 \cos(\alpha \phi) + c_2
+\sin(\alpha \phi)$ lösen. Nun setzen wir wie auf dem Aufgabenzettel angegeben
+$p = \ee^t$ für die Gleichung in $\rho$:
+\[
+	\ee^{2t} v''\del{\ee^t} + \ee^t v'\del{\ee^t} - \alpha^2 v\del{\ee^t} = 0
+\]
+
+Wir führen eine neue Funktion $a(t) := v\del{\ee^t}$ ein, deren zweite Ableitung $a''(t) = v''\del{\ee^t} \ee^{2t} + v'\del{\ee^t} \ee^t$ ist. Damit können wir die Differentialgleichung vereinfachen zu:
+\[
+	a'' - \alpha^2 a = 0
+\]
+
+Die Lösung davon sind Exponentialfunktionen, nach Rücksubstitution erhalten wir:
+\[
+	v(\rho) = c_3 \rho^\alpha + c_4 \rho^{-\alpha}
+\]
+
+Die Funktion $u$ setzen wir aus beidem zusammen:
+\[
+	u(\rho, \phi) = \del{c_3 \rho^\alpha + c_4 \rho^{-\alpha}} \del{c_1 \cos(\alpha \phi) + c_2 \sin(\alpha \phi)} + c_5
+\]
+
+Wir wählen $c_5 = 3$. Damit bei $\rho=1$ nur $3$ herauskommt sowie bei $\rho = 3$ der Wert $3 + 3 \cos\del\phi$, müssen wir $c_4=0$ wählen. Wir wählen $c_3 = 1$ und müssen nun noch folgende Gleochungen für $c_1$ und $c_2$ erfüllen:
+\[
+	c_1 + c_2 = 3
+	, \quad
+	3 c_1 + \frac 13 c_2 = 3
+\]
+
+Damit erhalten wir $c_1 = 9/8$ und $c_2 = - 9/8$. Die Lösung der Differentialgleichung ist also:
+\[
+	u(\rho, \phi) = \del{\frac 98 r - \frac 98 \frac 1r}\cos\del\phi + 3
+\]
+
+Wenn wir zur Kontrolle in diese Funktion $\rho = 1$ einsetzen, erhalten wir nur die $3$. Setzen wir $\rho = 3$ ein, erhalten wir $\del{27/8-3/8}\cos\del\phi = 3 \cos\del\phi$.
+
+Einsetzen in die Laplacegleichung ergibt $0$.
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+.. vim: spell spelllang=de
