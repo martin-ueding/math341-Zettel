@@ -1,0 +1,151 @@
+% Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{scrpage2}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{13}
+
+\pagestyle{scrheadings}
+
+\automark{section}
+\cfoot{\footnotesize{\thegruppe}}
+\chead{}
+\ifoot{\footnotesize{Ueding, Manz, Lemmer}}
+\ihead{\themodul{} -- Übung \theuebung}
+\ofoot{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c}
+		Aufgabe
+		& \ref 1
+		& \ref 2
+		& \ref 3
+		& \ref 4
+		& $\sum$ \\
+		\hline
+		Punkte
+		& 0 / 3
+		& \punkte / 6
+		& 0 / 4
+		& \punkte / 3
+		& \punkte / 16
+	\end{tabular}
+\end{table}
+
+\section{Integrale}
+\label 1
+
+\section{Integrale}
+\label 2
+
+\subsection{}
+
+Es ist folgendes Integral zu berechnen:
+\[
+	\int_{\abs z = 2} \frac{\dif z}{1 + z^2}
+\]
+
+Wir dürfen den Integralsatz nicht direkt anwenden, weil wir mehr als eine
+Singularität mit dem Weg umschlossen haben. Daher müssen wir erst eine
+Partialbruchzerlegung durchführen:
+\[
+	\half \int_{\abs z = 2} \frac{\dif z}{1 + i z}
+	+
+	\half \int_{\abs z = 2} \frac{\dif z}{1 - i z}
+\]
+
+Für diese beiden Integrale können wir den Satz nun anwenden und erhalten pro
+Summand $\half 2 \pi \ii$. Als Endergebnis erhalten wir $2 \pi \ii$.
+
+\section{Fouriertransformation}
+\label 3
+
+\section{Hauptzweig des Logarithmus}
+\label 4
+
+Wir wählen folgenden Pfad:
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+		\draw[->] (-1, 0) -- (3, 0) node[right] {$\Re$};
+		\draw[->] (0, -1) -- (0, 2) node[above] {$\Im$};
+
+		\begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}, thick]
+			\draw[postaction={decorate}] (1, 0) -- (2, 0) node[below, midway] {$\gamma_1$};
+			\draw[postaction={decorate}] (2, 0) arc (0:40:2);
+			\draw[postaction={decorate}] (40:2) -- (40:1) node[above, sloped, midway] {$\gamma_3$};
+			\draw[postaction={decorate}] (40:1) arc (40:0:1);
+		\end{scope}
+
+		\node[right] at (20:2) {$\gamma_2$};
+		\node[left] at (20:1) {$\gamma_4$};
+
+		\node[above] at (40:2) {$z$};
+		\fill (40:2) circle (.6mm);
+
+		\node[below] at (1, 0) {$1$};
+		\fill (1, 0) circle (.6mm);
+	\end{tikzpicture}
+\end{center}
+
+Dabei sind unsere Parametrisierungen:
+\begin{align*}
+	\gamma_1 \colon f(t) &= t & t &\in \intcc{1, \abs{z}} \\
+	\gamma_2 \colon f(t) &= \abs{z} \ee^{\ii t} & t &\in \intcc{0, \arg\del{z}} \\
+	\gamma_3 \colon f(t) &= t \ee^{\ii \arg\del{z}} & t &\in \intcc{\abs{z}, 1} \\
+	\gamma_4 \colon f(t) &= \ee^{\ii t} & t &\in \intcc{\arg\del{z}, \abs{z}}
+\end{align*}
+
+Wir berechnen die einzelnen Integrale:
+\begin{gather*}
+	\int_1^{\abs{z}} \dif t \, \frac 1t = \log\del{\abs{z}} \\
+	\int_0^{\arg\del{z}} \dif t \, \frac 1{\abs{z}} \ee^{\ii t} \ii \abs{z} \ee^{\ii t} = \ii \arg\del{z} \\
+	\int_{\abs{z}}^1 \dif t \, \frac 1t \ee^{-\ii \arg\del{z}} \ee^{\ii \arg\del{z}} = - \log\del{ \abs{z}} \\
+	\int_{\arg\del{z}}^0 \dif t \, \ee^{-\ii t} \ii \ee^{\ii t} = - \ii \arg\del{z}
+\end{gather*}
+
+Die ersten beiden Integrale zusammen sind gerade:
+\[
+	\log\del{\abs{z}}
+	\ii \arg\del{z}
+\]
+
+Dies ist die Definition des komplexen Logarithmus.
+
+Außerdem sind alle vier Integrale zusammen 0. Bei der Parametrisierung haben
+wir indirekt benutzt, dass das Gebiet sternförmig ist. Nur dadurch ist die
+Parametrisierung eindeutig gewesen. Weil das Ergebnis für jedes $z$ aus $\C^-$
+gilt, muss $\log\del z$ in $\C^-$ holomorph sein.
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
