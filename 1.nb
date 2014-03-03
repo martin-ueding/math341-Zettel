@@ -1,0 +1,229 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6109,        220]
+NotebookOptionsPosition[      5412,        190]
+NotebookOutlinePosition[      5768,        206]
+CellTagsIndexPosition[      5725,        203]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"u", "[", 
+   RowBox[{"x_", ",", "y_"}], "]"}], "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "6"}], 
+    RowBox[{"(", 
+     RowBox[{"Cos", "[", "x", "]"}], ")"}]}], "+", 
+   RowBox[{
+    RowBox[{"(", "2", ")"}], 
+    RowBox[{"y", "^", "3"}]}], "+", 
+   RowBox[{"15", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"y", "^", "2"}], "+", 
+      RowBox[{"2", "y"}]}], ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.565167728567823*^9, 3.565167741750404*^9}, {
+  3.565167866837556*^9, 3.5651678844119167`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"2", " ", 
+   SuperscriptBox["y", "3"]}], "+", 
+  RowBox[{"15", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"2", " ", "y"}], "+", 
+     SuperscriptBox["y", "2"]}], ")"}]}], "-", 
+  RowBox[{"6", " ", 
+   RowBox[{"Cos", "[", "x", "]"}]}]}]], "Output",
+ CellChangeTimes->{
+  3.565167761015934*^9, {3.5651678673919897`*^9, 3.5651678855550947`*^9}, 
+   3.566634366600831*^9, 3.567167128332307*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"v", "[", 
+   RowBox[{"x_", ",", "y_"}], "]"}], "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "6"}], 
+    RowBox[{"(", 
+     RowBox[{"Sin", "[", "x", "]"}], ")"}]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"-", "2"}], ")"}], 
+    RowBox[{"y", "^", "3"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.565167743367498*^9, 3.5651677579377527`*^9}, {
+  3.565167834515338*^9, 3.565167882498695*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", "2"}], " ", 
+   SuperscriptBox["y", "3"]}], "-", 
+  RowBox[{"6", " ", 
+   RowBox[{"Sin", "[", "x", "]"}]}]}]], "Output",
+ CellChangeTimes->{
+  3.565167759800147*^9, {3.565167838255645*^9, 3.565167886509691*^9}, 
+   3.566634366693776*^9, 3.567167128389112*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"system", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"u", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}], ",", "x"}], "]"}], "==", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"v", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}], ",", "y"}], "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"u", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}], ",", "y"}], "]"}], "\[Equal]", 
+     RowBox[{"-", 
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"v", "[", 
+         RowBox[{"x", ",", " ", "y"}], "]"}], ",", "x"}], "]"}]}]}]}], 
+   "}"}]}]], "Input",
+ CellChangeTimes->{{3.565167810680045*^9, 3.565167826797317*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"6", " ", 
+     RowBox[{"Sin", "[", "x", "]"}]}], "\[Equal]", 
+    RowBox[{
+     RowBox[{"-", "6"}], " ", 
+     SuperscriptBox["y", "2"]}]}], ",", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"6", " ", 
+      SuperscriptBox["y", "2"]}], "+", 
+     RowBox[{"15", " ", 
+      RowBox[{"(", 
+       RowBox[{"2", "+", 
+        RowBox[{"2", " ", "y"}]}], ")"}]}]}], "\[Equal]", 
+    RowBox[{"6", " ", 
+     RowBox[{"Cos", "[", "x", "]"}]}]}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.565167827398912*^9, 3.56516788795975*^9}, 
+   3.566634366732593*^9, 3.56716712841685*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{"system", ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], ",", "Reals"}], "]"}]], "Input",
+ CellChangeTimes->{{3.5651677669699802`*^9, 3.565167879607533*^9}, {
+  3.565168740086688*^9, 3.565168767614772*^9}, {3.566634377641617*^9, 
+  3.56663438270988*^9}, {3.56716712114972*^9, 3.5671671680365057`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "nsmet"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"This system cannot be solved with the methods available to \
+Solve. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/Solve\\\", ButtonNote -> \
+\\\"Solve::nsmet\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.567167163779148*^9}],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"6", " ", 
+       RowBox[{"Sin", "[", "x", "]"}]}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"-", "6"}], " ", 
+       SuperscriptBox["y", "2"]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"6", " ", 
+        SuperscriptBox["y", "2"]}], "+", 
+       RowBox[{"15", " ", 
+        RowBox[{"(", 
+         RowBox[{"2", "+", 
+          RowBox[{"2", " ", "y"}]}], ")"}]}]}], "\[Equal]", 
+      RowBox[{"6", " ", 
+       RowBox[{"Cos", "[", "x", "]"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], ",", "Reals"}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.5651688330415907`*^9, {3.566634366861261*^9, 3.566634384940394*^9}, {
+   3.567167123818062*^9, 3.567167163781337*^9}}]
+}, Open  ]]
+},
+WindowSize->{956, 706},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 539, 18, 32, "Input"],
+Cell[1121, 42, 431, 13, 37, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1589, 60, 430, 14, 32, "Input"],
+Cell[2022, 76, 310, 9, 34, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2369, 90, 754, 24, 32, "Input"],
+Cell[3126, 116, 626, 20, 37, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3789, 141, 361, 7, 32, "Input"],
+Cell[4153, 150, 430, 10, 24, "Message"],
+Cell[4586, 162, 810, 25, 37, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

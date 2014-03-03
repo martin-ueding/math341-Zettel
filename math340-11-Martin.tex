@@ -1,0 +1,252 @@
+% Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{scrpage2}
+\usepackage{tikz}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{11}
+
+\pagestyle{scrheadings}
+
+\automark{section}
+\cfoot{\footnotesize{\thegruppe}}
+\chead{}
+\ifoot{\footnotesize{Ueding, Manz, Lemmer}}
+\ihead{\themodul{} -- Übung \theuebung}
+\ofoot{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c|c}
+		Aufgabe & \ref 1 & \ref 2 & \ref 3 & \ref 4 & $\sum$   \\
+		\hline
+		Punkte & \punkte / 8 & \punkte / 2 & \punkte / 2 & \punkte / 4 & \punkte / 16
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            holomorphe Funktionen                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{holomorphe Funktionen}
+\label 1
+
+\subsection{}
+
+\begin{gather*}
+	u = xy
+	,\quad
+	v = xy \\
+	\dpd ux = y
+	,\quad
+	\dpd uy = x
+	,\quad
+	\dpd vx = y
+	,\quad
+	\dpd vy = x \\
+	\dpd ux = \dpd vy
+	\quad\wedge\quad
+	\dpd uy = - \dpd vx \\
+	y = y
+	\quad\wedge\quad
+	x = -y \\
+	y = -y
+	\quad\wedge\quad
+	x = -x \\
+	x = 0
+	\quad\wedge\quad
+	y = 0
+\end{gather*}
+
+Die Funktion ist nur im Punkt $z = 0$ komplex differenzierbar.
+
+\stepcounter{subsection}
+\subsection{}
+
+\begin{gather*}
+	u = -6 \cos\del x + 2 y^2 + 15\del{y^2 + 2y} \\
+	v = -6 \sin\del x - 2y^3 \\
+	\dpd ux = 6 \sin\del x
+	,\quad
+	\dpd uy = 6 y^2 + 15(2y +2)
+	,\quad
+	\dpd vx = - 6 \cos\del x
+	,\quad
+	\dpd vy = - 6 y^2
+\end{gather*}
+
+Das Gleichungssystem $\pd ux = \pd vy \wedge \pd uy = - \pd vx$ haben wir in
+\emph{Mathematica} Lösen lassen, das Ergebnis passte nicht mehr auf einen
+Bildschirm. Genähert erhalten wir folgende Lösungen (mit $n \in \Z$):
+\begin{center}
+\begin{tabular}{cc}
+	$x$ & $y$ \\
+	\hline
+	$+2.50956 - 3.01879 \ii + 2 n \pi$ & $-1.44323 + 2.85358 \ii$ \\
+	$+2.50956 + 3.01879 \ii + 2 n \pi$ & $-1.44323 - 2.85358 \ii$ \\
+	$-0.93877 - 0.77286 \ii + 2 n \pi$ & $-1.05677 - 0.23817 \ii$ \\
+	$-0.93877 + 0.77286 \ii + 2 n \pi$ & $-1.05677 + 0.23819 \ii$ \\
+\end{tabular}
+\end{center}
+
+\fehlt
+
+\stepcounter{subsection}
+\subsection{}
+
+\begin{gather*}
+	f(z) = \sqrt{\abs{\Re z \Im z}} = \sqrt{\abs{xy}} \\
+	u = \sqrt{\abs{xy}}
+	,\quad
+	v = 0
+\end{gather*}
+
+Die Ableitungen sind:
+\[
+	\dpd ux = \begin{cases}
+		\frac{y}{2\sqrt{xy}} & xy > 0 \\
+		\frac{-y}{2\sqrt{-xy}} & xy < 0 \\
+						\infty & x = 0 \\
+				 0 & y = 0
+	\end{cases}
+	,\quad
+	\dpd uy = \begin{cases}
+		\frac{x}{2\sqrt{xy}} & xy > 0 \\
+		\frac{-x}{2\sqrt{-xy}} & xy < 0 \\
+						\infty & y = 0 \\
+				 0 & x = 0
+	\end{cases}
+	,\quad
+	\dpd vx = 0
+	,\quad
+	\dpd vy = 0
+\]
+
+Die Cauchy-Riemann Differentialgleichung sind allerdings nur erfüllt für:
+\[
+	\del{y = 0 \wedge x \neq 0} \wedge \del{x = 0 \wedge y \neq 0}
+\]
+
+Somit ist die Funktion in keinem Punkt holomorph.
+	
+\subsection{}
+
+\begin{gather*}
+	f(z) = z \Re z = (x+\ii y)x = x^2 + \ii xy \\
+	u = x^2
+	,\quad
+	v = xy \\
+	\dpd ux = 2x
+	,\quad
+	\dpd uy = 0
+	,\quad
+	\dpd vx = y
+	,\quad
+	\dpd vy = x \\
+	2x = 0
+	\wedge
+	y = 0
+	\iff
+	x = 0
+	\wedge
+	y = 0
+\end{gather*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{}
+\label 2
+
+\stepcounter{subsection}
+\subsection{}
+
+Gegeben ist:
+\begin{gather*}
+	u = x^2 - y^2 + \ee^{-y} \sin\del x - \ee^y \cos\del x \\
+	\dpd ux = 2x + \ee^{-y} \cos\del x + \ee^y \sin\del x \\
+	\dpd uy = -2y - \ee^{-y} \sin\del x - \ee^y \cos\del x
+\end{gather*}
+
+Es müssen die Cauchy-Riemann Differentialgleichung erfüllt sein:
+\[
+	\dpd ux = \dpd vy \wedge \dpd uy = - \dpd vx
+\]
+
+Unser Gleichungssystem:
+\begin{align*}
+	2x + \ee^{-y} \cos\del x + \ee^y \sin\del x &= \dpd vy \\
+	2y + \ee^{-y} \sin\del x + \ee^y \cos\del x &= \dpd vx
+\end{align*}
+
+Wir integrieren die erste Gleichung nach $y$, die zweite nach $x$:
+\begin{align*}
+	v &= 2xy - \ee^{-y} \cos\del x + \ee^y \sin\del x + c_1(x) \\
+	v &= 2xy - \ee^{-y} \cos\del x + \ee^y \sin\del x + c_2(y)
+\end{align*}
+
+Dies kann nur erfüllt sein, wenn gilt:
+\[
+	c_1(x) = c_2(y) \iff c_1(x) = c_2(y) = c_3
+\]
+
+Alle Funktionen $v$, so dass $f$ holomorph ist, sind:
+\[
+	v = 2xy - \ee^{-y} \cos\del x + \ee^y \sin\del x + c_3
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{}
+\label 3
+
+Sei $f(x + \ii y) = u(x, y) + \ii v(x, y)$. Nun gilt:
+\begin{align*}
+	g(z) &= \overline{f\del{\overline z}} = u(x, -y) - \ii v(x, -y) \\
+g'(z) &= \dpd ux(x, -y) - \ii \dpd vx(x, -y) \\
+			   &= \overline{f'\del{\overline z}}
+\end{align*}
+
+Für die Funktion $h(z)$ gilt ähnlich:
+\begin{align*}
+	h(z) &= \overline{f\del{z}} = u(x, y) - \ii v(x, y) \\
+h'(z) &= \dpd ux(x, y) - \ii \dpd vx(x, y) \\
+			   &= \overline{f'\del{z}}
+\end{align*}
+
+\stepcounter{section}
+\section{}
+\label 4
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
