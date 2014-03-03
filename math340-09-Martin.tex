@@ -1,0 +1,209 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{9}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Ueding, Manz, Lemmer}}
+\fancyfoot[R]{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c}
+		Aufgabe & \ref 1 & \ref 2 & \ref 3 & $\sum$   \\
+		\hline
+		Punkte & \punkte / 7 & \punkte / 5 & \punkte 3 & \punkte / 15
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            Fouriertransformierte                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fouriertransformierte}
+\label 1
+
+\subsection{}
+
+{
+	\renewcommand \exp[1]{\mathrm e^{#1}}
+
+	Gesucht ist die Fouriertransformierte von $f_a\del x=\exp{-a\abs x}$ für
+	$a>0$. Ich berechne
+	\begin{align*}
+		\mathcal F\del{f}\del\omega&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f_a\del x\cdot \exp{-i\omega x}\dif x\\
+		\displaybreak[3]
+							 &=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x}\cdot \exp{-i\omega x}\dif x\\
+		\displaybreak[3]
+		&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty\exp{-a\abs x-i\omega x}\dif x\\
+		\displaybreak[3]
+  &=\frac{1}{\sqrt{2\pi}}\del{\int_{-\infty}^0\exp{\del{a-i\omega}x}\dif x+\int_0^\infty\exp{-\del{a+i\omega}x}\dif x}\\
+		\displaybreak[3]
+  &=\frac{1}{\sqrt{2\pi}}\del{\left.\frac{1}{a-i\omega}\exp{\del{a-i\omega}x}\right|_{-\infty}^0-\left.\frac{1}{a+i\omega}\exp{-\del{a+i\omega}x}\right|_0^{\infty}}\\
+		\displaybreak[3]
+  &=\frac{1}{\sqrt{2\pi}}\del{\frac{1}{a-i\omega}+\frac{1}{a+i\omega}}\\
+		\displaybreak[3]
+		&=\frac{1}{\sqrt{2\pi}}\frac{2a}{a^2+\omega^2}\\
+  &=\frac{\sqrt{2}}{\pi}\frac{a}{a^2+\omega^2}
+		\intertext{Die Gesamtenergie ergibt sich zu}
+		\int_{-\infty}^\infty \abs{f_a\del{x}}^2\dif x&=\int_{-\infty}^\infty \del{\exp{-a\abs{x}}}^2\dif x\\
+		\displaybreak[3]
+		&=\int_{-\infty}^0 \exp{2ax}\dif x+\int_{0}^\infty \exp{-2ax}\dif x\\
+		\displaybreak[3]
+  &=\left.\frac{1}{2a}\exp{2ax}\right|_{-\infty}^0-\left.\frac{1}{2a}\exp{-2ax}\right|_{0}^\infty\\
+		\displaybreak[3]
+  &=\frac 1a
+	\end{align*}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Dirichletproblem                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Dirichletproblem}
+\label 2
+
+Gelöst werden soll die Laplacegleichung mit Randbedingung:
+\[
+	\dpd[2] ux + \dpd[2] uy = 0
+	\quad\wedge\quad
+	u(x, 0) = f(x)
+\]
+
+Wir setzen:
+\[
+	W(\omega, y) := \del{\fourier_x u}(\omega, y)
+	,\quad
+	W_0(\omega) := \del{\fourier_x f}(\omega)
+	,\quad
+	\dpd[2] Wx := \fourier_x\del{\dpd[2] ux} = - \omega^2 W
+\]
+
+Wir wenden die Fouriertransformation in $x \to \omega$, $\fourier_x$, auf die
+Differentialgleichung an und erhalten (unter Benutzung der Linearität):
+\[
+	\fourier_x\del{\dpd[2] ux} + \fourier_x \del{\dpd[2] uy} = 0
+	\iff
+	- \omega^2 W + \dpd[2] Wy = 0
+\]
+
+Diese Differentialgleichung können wir durch einen Exponentialansatz lösen:
+\[
+	W(\omega, y) = \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} W_0(\omega)
+\]
+
+Dies müssen wir rücktransformieren um eine Lösung $u$ zu erhalten:
+\begin{align*}
+	u(x, y)
+	&= \fourier_x^{-1} \del{\del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} W_0(\omega)} \\
+	\intertext{%
+		Das Produkt lösen wir in eine Faltung in $x$ auf.
+	}
+	&= \frac 1{\sqrt{2\pi}} \fourier_x^{-1} \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} * \fourier_x^{-1} W_0(\omega) \\
+	&= \frac 1{\sqrt{2\pi}} \fourier_x^{-1} \del{c_1 \ee^{\ii \omega y} + c_2 \ee^{-\ii \omega y}} * f(x) \\
+	&= \frac 1{2\pi} \del{
+		c_1 \int_{-\infty}^\infty \dif \omega \, \ee^{\ii \omega y} \ee^{\ii \omega x}
+		+ c_2 \int_{-\infty}^\infty \dif \omega \, \ee^{-\ii \omega y} \ee^{\ii \omega x}
+	} * f(x) \\
+	&= \frac 1{2\pi} \del{
+		c_1 \int_{-\infty}^\infty \dif \omega \, \ee^{\ii \omega (x+y)}
+		+ c_2 \int_{-\infty}^\infty \dif \omega \, \ee^{\ii \omega (x-y)}
+	} * f(x) \\
+	&= \frac 1{2\pi} \del{
+	\frac{c_1}{\ii (x+y)} \sbr{\ee^{\ii \omega (x+y)}}_{-\infty}^\infty
+	+ \frac{c_2}{\ii (x-y)} \sbr{\ee^{\ii \omega (x-y)}}_{-\infty}^\infty
+	} * f(x) \\
+	\intertext{%
+		Die eckigen Klammern sind undefiniert, es sei denn, es gilt $x + y =
+		0$, beziehungsweise $x - y = 0$. Eine Spektralfunktion, die überhaupt
+		nicht lokalisiert ist, sollte als ursprüngliche Funktion eine haben,
+		die unendlich lokalisiert ist. Dann muss der Bruch allerdings zu einer
+		$\delta$-Distribution werden. Alle Vorfaktoren ziehen wir in die
+		unbestimmten Konstanten.
+	}
+	&= \del{
+	c_3 \delta\del{x+y} + c_4 \delta\del{x-y}
+	} * f(x) \\
+	\intertext{%
+		Die Faltung in $x$ ist ein Integral in $x$, so dass die
+		$\delta$-Distributionen aufgelöst werden können. Dabei werten wir diese
+		bei $x \pm y - x = \pm y$ aus.
+	}
+	&= \int_{-\infty}^\infty \dif x \, \del{
+	c_3 \delta\del{y} + c_4 \delta\del{-y}
+	} f(x) \\
+	&= c_3 f(y) + c_4 f(-y)
+\end{align*}
+
+Das ganze sieht jetzt ein wenig aus wie Ladung und Spiegelladung. Durch die
+Symmetrie in $x$ taucht diese Variable auch nicht mehr explizit auf.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 Zeitsignal                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Zeitsignal}
+\label 3
+
+Es soll die Gesamtenergie eines Signals mit Spektralfunktion $F$ bestimmt
+werden:
+\[
+	F(\omega) = \frac{\sqrt{\abs \omega}}{1+\omega^2}
+\]
+
+Wir berechnen die Gesamtenergie:
+\begin{align*}
+	W
+	&= \int_{-\infty}^{\infty} \dif t \, \abs{f(t)}^2 \\
+	\intertext{%
+		Praktischerweise können wir hier die Fouriertransformation auf die
+		Funktion anwenden, ohne dass sich das Integral ändert (Plancherel).
+	}
+	&= \int_{-\infty}^{\infty} \dif \omega \, \abs{\del{\fourier f}(\omega)}^2 \\
+	\intertext{%
+		Dies ist gerade die gegebene Spektralfunktion.
+	}
+	&= \int_{-\infty}^{\infty} \dif \omega \, \abs{F(\omega)}^2
+	= \int_{-\infty}^{\infty} \dif \omega \, \frac{\abs \omega}{\del{1+\omega^2}^2}
+	= 2 \int_0^{\infty} \dif \omega \, \frac{\omega}{\del{1+\omega^2}^2} \\
+	\intertext{%
+		Wir substituieren $z(\omega) := 1 + \omega^2$ mit $\dif z / (2 \omega) = \dif \omega$.
+	}
+	&= \int_{z(0)}^{z(\infty)} \dif z \, \frac{1}{z^2}
+	= \sbr{- \frac{1}{z}}_{z(0)}^{z(\infty)}
+	= \sbr{- \frac{1}{1 + \omega^2}}_{0}^{\infty}
+	= 1
+\end{align*}
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
