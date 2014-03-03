@@ -69,24 +69,29 @@
 
 Wir entwickeln um $z_0 = 1$. Die Ableitungen sind, wie im Reellen:
 \[
-	f^{(n)} (-1)^{n+1} x^{-n}
+	f^{(n)} = (-1)^{n+1} x^{-n}
 \]
-
-\textcolor{red}{
-	Das sollte so nicht sein, vor allem, weil dann auch im weiteren Verlauf ein
-	unendlicher Konvergenzradius vorkommen kann. Da $z = 0$ allerdings eine
-	Polstelle ist, und die Funktion nur auf $\C^-$ definiert ist, sollte es
-	Probleme geben.
-}
 
 Die Reihe ist mit $f^{(n)}(1) = (-1)^{n+1}$:
 \[
 	f(z) = \sum_{n=0}^\infty \frac{(-1)^{n+1}}{n!} \del{z - z_0}^n
 \]
 
+Diese Reihe konvergiert sogar absolut für alle $z$.
+
 \subsection{$z_0 = -1 + \iup$}
 
-\fehlt
+Wir benutzen die gleichen Ableitungen, werten allerdings an $z_0 = -1 + \iup$
+aus.
+\[
+	f(z) = -\sum_{n=0}^\infty \del{\frac{1}{1 - \iup}}^{n} \frac{1}{n!} \del{z - z_0}^n
+\]
+
+Auch diese Reihe konvergiert absolut für alle $z$, also auch in $-1-\epsilon\iup$.
+
+Da $-1+\iup$ und $-1-\epsilon\iup$ allerdings auf zwei verschiedenen Ebenen der
+Riemann'schen Fläche liegen, weichen die Funktionswerte um $2\piup\iup$
+voneinander ab.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                            holomorphe Funktionen                            %
@@ -96,14 +101,26 @@ Die Reihe ist mit $f^{(n)}(1) = (-1)^{n+1}$:
 \section{holomorphe Funktionen}
 \label 2
 
-\subsection{erste Funktion}
+\stepcounter{subsection}
+\subsection{zweite Funktion}
 
-\fehlt
+Wir setzen $z = \frac 1n$ und erhalten:
+\[
+	f(z)
+	= \frac{1}{\frac1{z^2}-1}
+	= \frac{z^2}{1 - z^2}
+\]
 
-\addtocounter{subsection}{2}
+Diese Funktion ist an den Stellen $z = \pm 1$ nicht definiert. Auf $B_1(0)$
+gibt es allerdings keine weiteren Definitionslücken. Die Funktion ist auf
+dieser Kreisscheibe holomorph. Wenn wir $n > 1$ voraussetzen, gilt die
+Identität $f(1/n) = \del{n^2 - 1}^{-1}$ für alle $n$.
+
+\stepcounter{subsection}
 \subsection{vierte Funktion}
 
-\fehlt
+Die Funktion $f \equiv 0$ erfüllt die Bedingung $\abs{f(1/n)} \leq \eup^{-n}$,
+wenn auch nicht besonders kreativ.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                        Entwicklung in Laurentreihen                         %
