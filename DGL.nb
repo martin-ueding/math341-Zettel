@@ -1,0 +1,201 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5253,        191]
+NotebookOptionsPosition[      4707,        166]
+NotebookOutlinePosition[      5063,        182]
+CellTagsIndexPosition[      5020,        179]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"dgl", " ", "=", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"x", ",", " ", "t"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", " ", "2"}], "}"}]}], "]"}], " ", "\[Equal]", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"a", "^", "2"}], " ", 
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", " ", "t"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}], " ", "+", " ", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"omega", " ", "x"}], "]"}]}]}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.560516155333095*^9, 3.560516208999721*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox["u", 
+    TagBox[
+     RowBox[{"(", 
+      RowBox[{"0", ",", "2"}], ")"}],
+     Derivative],
+    MultilineFunction->None], "[", 
+   RowBox[{"x", ",", "t"}], "]"}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"Sin", "[", 
+    RowBox[{"omega", " ", "x"}], "]"}], "+", 
+   RowBox[{
+    SuperscriptBox["a", "2"], " ", 
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"2", ",", "0"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]}]}]], "Output",
+ CellChangeTimes->{{3.5605161836585608`*^9, 3.560516209519042*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"problem", "=", 
+  RowBox[{"{", 
+   RowBox[{"dgl", ",", " ", 
+    RowBox[{
+     RowBox[{"u", "[", 
+      RowBox[{"x", ",", " ", "0"}], "]"}], "\[Equal]", "0"}]}], 
+   "}"}]}]], "Input",
+ CellChangeTimes->{{3.5605162597348013`*^9, 3.560516292720029*^9}, {
+   3.560516330919389*^9, 3.560516333684767*^9}, 3.560516434024427*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"0", ",", "2"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "t"}], "]"}], "\[Equal]", 
+    RowBox[{
+     RowBox[{"Sin", "[", 
+      RowBox[{"omega", " ", "x"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["a", "2"], " ", 
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"2", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "t"}], "]"}]}]}]}], ",", 
+   RowBox[{
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", "0"}], "]"}], "\[Equal]", "0"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.5605162632090473`*^9, 3.5605162937356977`*^9}, {
+   3.5605163313815527`*^9, 3.560516334175804*^9}, 3.560516434465376*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{"problem", ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"x", ",", "t"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "t"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.560516390038662*^9, 3.560516424110671*^9}, {
+  3.560516469997911*^9, 3.560516477086063*^9}}],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "2"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "t"}], "]"}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"Sin", "[", 
+        RowBox[{"omega", " ", "x"}], "]"}], "+", 
+       RowBox[{
+        SuperscriptBox["a", "2"], " ", 
+        RowBox[{
+         SuperscriptBox["u", 
+          TagBox[
+           RowBox[{"(", 
+            RowBox[{"2", ",", "0"}], ")"}],
+           Derivative],
+          MultilineFunction->None], "[", 
+         RowBox[{"x", ",", "t"}], "]"}]}]}]}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"x", ",", "0"}], "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"x", ",", "t"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "t"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.560516403461046*^9, 3.560516435726614*^9}, {
+  3.560516470768314*^9, 3.560516477577231*^9}}]
+}, Open  ]]
+},
+WindowSize->{679, 706},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 712, 21, 50, "Input"],
+Cell[1294, 45, 652, 23, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1983, 73, 348, 9, 30, "Input"],
+Cell[2334, 84, 904, 29, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3275, 118, 316, 8, 30, "Input"],
+Cell[3594, 128, 1097, 35, 55, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
