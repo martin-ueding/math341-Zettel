@@ -1,0 +1,251 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{scrpage2}
+\usepackage{tikz}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{10}
+
+\pagestyle{scrheadings}
+
+\automark{section}
+\cfoot{\footnotesize{\thegruppe}}
+\chead{}
+\ifoot{\footnotesize{Ueding, Manz, Lemmer}}
+\ihead{\themodul{} -- Übung \theuebung}
+\ofoot{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c}
+		Aufgabe & \ref 1 & \ref 2 & \ref 3 & $\sum$   \\
+		\hline
+		Punkte & \punkte / 4 & \punkte / 4 & \punkte / 8 & \punkte / 16
+	\end{tabular}
+\end{table}
+
+\stepcounter{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Real- und Imaginärteil                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Real- und Imaginärteil}
+\label 1
+
+\subsection{}
+\begin{align*}
+	z=\frac{1+\ii}{1-\del{1+\ii}^2}&=-\frac{1}{5}+\frac{3}{5}\ii\\
+								\Re\del{z}&=-\frac{1}{5}\\
+					 \Im\del z&=\frac{3}{5}\\
+					 \abs z&=\sqrt{\frac{2}{5}}\\
+			\arg \del{z}&=\arctan\del{-3}
+\end{align*}
+\subsection{}
+\begin{align*}
+	z=\del{\frac{1+\ii}{1-\ii}}^{99}&=-\ii\\
+								  \Re\del z&=0\\
+					  \Im\del z&=-1\\
+					  \abs z&=1\\
+			   \arg\del z&=\frac{3}{2}\pi
+\end{align*}
+\subsection{}
+\begin{align*}
+	z=\frac{2-\ii}{3\ii+\del{1-\ii}^2}&=-\frac{1}{5}-\frac{2}{5}\ii\\
+								   \Re\del z&=-\frac{1}{5}\\
+					   \Im\del z&=-\frac{2}{5}\\
+					   \abs z&=\frac{1}{\sqrt{5}}\\
+				\arg\del z&=\arctan\del{2}
+\end{align*}
+\subsection{}
+\begin{align*}
+	z=\del{\frac{2\ii}{1-\ii}}^9&=-16+16\ii\\
+							  \Re\del z&=-16\\
+					 \Im\del z&=16\\
+					 \abs z&=\sqrt{2}\cdot 16\\
+			  \arg\del z&=\frac 34\pi
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            komplexe Gleichungen                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{komplexe Gleichungen}
+\label 2
+
+\subsection{}
+
+\begin{align*}
+	z^7 + 4 &= 0 \\
+		z^7 &= -4 \\
+	\del{r \ee^{\ii \phi}}^7 &= -4 \\
+		r^7 \ee^{7 \ii \phi} &= -4 \\
+	\intertext{%
+		$r$ muss reell sein, also ist $r = \sqrt[7]{4}$. Nun muss die
+		Exponentialfunktion noch die Phase richtig auf $-1$ bekommen.
+	}
+	\ee^{7 \ii \phi} &= -1 \\
+			  7 \phi &= \del{n + \half} \pi \\
+		  \phi &= \frac{2n + 1}{14} \pi
+\end{align*}
+
+Die Lösungen sind alle $n = 0, \ldots, 6$, also 7 Lösungen, mit $r =
+\sqrt[7]{4}$:
+\[
+	\mathbb L
+	= \set{
+		r \angle \frac{1}{14} \pi,
+		r \angle \frac{3}{14} \pi,
+		r \angle \frac{5}{14} \pi,
+		r \angle \frac{7}{14} \pi,
+		r \angle \frac{9}{14} \pi,
+		r \angle \frac{11}{14} \pi,
+		r \angle \frac{13}{14} \pi
+	}
+\]
+
+\subsection{}
+
+\begin{align*}
+	z^6 + 64 &= 0 \\
+		 r^6 \ee^{6 \ii \phi} &= -64 \\
+	\intertext{%
+		Wir wählen $r = \sqrt[6]{64}$.
+	}
+	\ee^{6 \ii \phi} &= -1 \\
+							 6 \phi &= \frac{2n+1}{2} \pi \\
+							\phi &= \frac{2n+1}{12} \pi
+\end{align*}
+
+Eindeutige Lösungen erhalten wir für $n = 0, \ldots, 5$, also 6 Lösungen. Mit $r = \sqrt[6]{64}$.
+\[
+	\mathbb L
+	= \set{
+		r \angle \frac{ 1}{12} \pi,
+		r \angle \frac{ 3}{12} \pi,
+		r \angle \frac{ 5}{12} \pi,
+		r \angle \frac{ 7}{12} \pi,
+		r \angle \frac{ 9}{12} \pi,
+		r \angle \frac{11}{12} \pi,
+	}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                Trigonometrie                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+\section{Trigonometrie}
+\label 3
+
+\subsection{Identitäten}
+
+Die Definitionen der Funktionen sind:
+\begin{align*}
+	\cosh(z) &:= \frac 1{2} \del{\ee^{z} + \ee^{-z}} \\
+	\sinh(z) &:= \frac 1{2} \del{\ee^{z} - \ee^{-z}} \\
+	\cos(z) &:= \frac 1{2} \del{\ee^{\ii z} + \ee^{-\ii z}} \\
+	\sin(z) &:= \frac 1{2 \ii} \del{\ee^{\ii z} - \ee^{-\ii z}}
+\end{align*}
+
+Zusammen mit $1/\ii = - \ii$ ist zu sehen, dass $\cosh(z) = \cos(\ii z)$,
+$\cos(z) = \cosh(\ii z)$ sowie $\sinh(z) = - \ii \sin(\ii z)$ und $\sin(z) = -
+\ii \sinh(\ii z)$ gilt.
+
+Der trigonometrische Pythagoras:
+\begin{align*}
+	\sin^2(z) + \cos^2(z)
+	&= \del{\frac 1{2 \ii} \del{\ee^{\ii z} - \ee^{-\ii z}}}^2 + \del{\frac 1{2} \del{\ee^{\ii z} + \ee^{-\ii z}}}^2 \\
+	&= - \frac 14 \del{\ee^{\ii z} - \ee^{-\ii z}}^2 + \frac 14 \del{\ee^{\ii z} + \ee^{-\ii z}}^2 \\
+	&= - \frac 14 \del{\ee^{2 \ii z} + 2 - \ee^{-2 \ii z}} + \frac 14 \del{\ee^{2 \ii z} + 2 + \ee^{-2 \ii z}} \\
+	&= - \frac 14 \ee^{2 \ii z} + \frac 12 - \frac 14 \ee^{-2 \ii z} + \frac 14 \ee^{2 \ii z} + \frac 12 + \frac 14 \ee^{-2 \ii z} \\
+	&= 1
+\end{align*}
+
+\subsection{berechnen}
+
+\begin{gather*}
+	\sin(\pi + 3 \ii)
+	= \frac 1{2 \ii} \del{\ee^{\ii \del{\pi + 3 \ii}} - \ee^{-\ii \del{\pi + 3 \ii}}}
+	= \frac 1{2 \ii} \del{\ee^{3} - \ee^{-3}}
+	= - \ii \sinh(3) \\
+	%
+	\cosh(\ii)
+	= \frac 1{2} \del{\ee^{\ii} + \ee^{-\ii}}
+	= \cos(1)
+\end{gather*}
+
+\subsection{Sinus}
+
+\begin{align*}
+	\sin(z) &= 1000 \\
+	\frac 1{2 \ii} \del{\ee^{\ii z} - \ee^{-\ii z}} &= 1000 \\
+	\ee^{\ii z} - \ee^{-\ii z} &= 2000 \ii \\
+	\ee^{\ii \del{a + b \ii}} - \ee^{-\ii \del{a + b \ii}} &= 2000 \ii \\
+	\ee^{\ii a - b} - \ee^{-\ii a + b} &= 2000 \ii \\
+	\ee^{\ii a - b} - \ee^{-\ii a + b} &= \ee^{\ln(2000) + \half \pi \ii} \\
+	\intertext{
+		Wir setzen $a = \half \pi$.
+	}
+	\ee^{\half \pi \ii - b} - \ee^{-\half \pi \ii + b} &= \ee^{\ln(2000) + \half \pi \ii} \\
+	\ii \ee^{- b} + \ii \ee^{+ b} &= 2000 \ii \\
+	\half \del{\ee^{- b} + \ee^{+ b}} &= 1000 \\
+	\cosh(b) &= 1000 \\
+		   b &\approx 7.6009
+\end{align*}
+
+Die Lösung ist $z = \half \ii \pi + \acosh(1000) \ii \approx \half \ii \pi +
+7.6009 \ii$.
+
+\subsection{Gleichungen}
+
+Erste Gleichung:
+\[
+	\ee^x = 3
+	\iff
+	x = \ln(3) + 2 n \pi \ii, n \in \Z \\
+\]
+
+Zweite Gleichung:
+\begin{align*}
+	\ee^{x} &= 2 + 3 \ii
+	= \exp\del{\ln\del{\sqrt{2^2 + 3^2}} + \arctan\del{\frac 32} \pi \ii} \\
+	x &= \ln\del{\sqrt{15}} + \arctan\del{\frac 32} \pi \ii + 2 n \pi \ii, n \in \Z
+\end{align*}
+
+Dritte Gleichung:
+\begin{align*}
+	\ee^x &= \ee + 2 \pi \ii
+ = \exp\del{\ln\del{\sqrt{\ee^2 + 4 \pi^2}} + \arctan\del{\frac{2 \pi}{\ee}} \pi \ii} \\
+ x &= \ln\del{\sqrt{\ee^2 + 4 \pi^2}} + \arctan\del{\frac{2 \pi}{\ee}} \pi \ii + 2 n \pi \ii, n \in \Z
+\end{align*}
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
