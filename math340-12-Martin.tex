@@ -1,0 +1,183 @@
+% Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{scrpage2}
+\usepackage{tikz}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{12}
+
+\pagestyle{scrheadings}
+
+\automark{section}
+\cfoot{\footnotesize{\thegruppe}}
+\chead{}
+\ifoot{\footnotesize{Ueding, Manz, Lemmer}}
+\ihead{\themodul{} -- Übung \theuebung}
+\ofoot{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c|c}
+		Aufgabe & \ref 1 & \ref 2 & \ref 3 & \ref 4 & $\sum$   \\
+		\hline
+		Punkte & \punkte / 4 & \punkte / 3 & \punkte / 5 & \punkte / 3 & \punkte / 15
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               Betragsfunktion                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Betragsfunktion}
+\label 1
+
+\subsection{gerade Strecke}
+
+Wir wählen die Parametrisierung:
+\[
+	z(t) = (1-t) + \ii t
+\]
+
+Damit ist das Integral:
+\begin{align*}
+	\int_{\gamma_1} \dif z \, f(z)
+	&= \int_0^{1} \dif t \, f\del{z(t)} \dot z(t) \\
+	&= \int_0^{1} \dif t \, \del{(1-t)+\ii t}\del{(1-t)-\ii t} (-1 + \ii) \\
+	&= (-1 + \ii) \int_0^{\pi/2} \dif t \, \del{1 - 2t + 2t^2} \\
+	&= (-1 + \ii) \frac 23
+\end{align*}
+
+\subsection{Kreisbogen}
+
+Wir wählen als Parametrisierung:
+\[
+	z(t) = \ee^{\ii t}
+\]
+
+Somit ist das Integral:
+\begin{align*}
+	\int_{\gamma_2} \dif z \, f(z)
+	&= \int_0^{\pi/2} \dif t \, \ee^{\ii t} \ee^{-\ii t} \ii \\
+	&= \half \pi \ii
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 Grenzwerte                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+\stepcounter{section}
+\section{Grenzwerte}
+\label 2
+
+\subsection{erster Grenzwert}
+
+Wir dürfen Integral und Grenzwert vertauschen, weil die Funktion stetig ist. Da
+$f$ stetig ist, dürfen wir auch den Grenzwert in das Argument reinziehen. Somit
+bleibt:
+\[
+	\int_0^{2\pi} \dif \phi \, f(0) = 2 \pi f(0)
+\]
+
+\subsection{zweiter Grenzwert}
+
+Wir integrieren über den Kreisumfang, der allerdings gegen 0 geht. Daher können
+wir die Funktion durch ihre nullte Näherung ersetzen:
+\[
+	\lim_{r \to 0} \int_{\abs z = r} \dif z \, \frac{f(0)}{z}
+\]
+
+Die nun konstante Funktion ziehen wir heraus und erhalten die Integralformel,
+die wir bereits in der Vorlesung hatten ($\oint \dif z / z = 2 \pi \ii$). Somit
+ist der Ausdruck $f(0) 2 \pi \ii$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            Parameterdarstellung                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Parameterdarstellung}
+\label 3
+
+Wir müssen folgende Fälle unterscheiden:
+
+\begin{description}
+	\item[Fall $k = 0$]
+		Die Funktion ist konstant. Für eine solche Funktion gibt es eine
+		Stammfunktion, es gilt also $\oint \ldots = 0$.
+
+	\item[Fall $k > 0$ oder $k < -1$]
+		Die Stammfunktion ist $F(z) = \frac{1}{k+1} \del{z - z_0}^{k+1}$. Die
+		Riemann'sche Fläche, auf der die Funktion definiert ist, ist einfach
+		$\C$, so dass auch hier $\oint \ldots = 0$ gilt.
+
+	\item[Fall $k = -1$]
+		Die Stammfunktion ist $F(z) = \ln\del{z - z_0}$, jedoch auf $2 \pi n
+		\ii$ unbestimmt. Da die Riemann'sche Fläche die Spirale mit Zentrum
+		$z_0$ ist, kommt hier $\oint \ldots = 2 \pi \ii$ heraus, falls $z_0$
+		von $\gamma$ umschlossen wird. Ansonsten wechseln wir die Ebenen der
+		Spirale nicht und erhalten wieder $\oint \ldots = 0$.
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 Sterngebiet                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Sterngebiet}
+\label 4
+
+\subsection{Sterngebiet?}
+
+Nein, $\mathcal G$ ist kein Sterngebiet. Angenommen es wäre doch ein
+Sterngebiet mit Mittelpunkt $g$. Dann ist $z(t) = (1-t) g$ für $t \in \intcc{0,
+1}$ die Gerade vom Punkt $g$ zu $0$. Der Verbindungslinie von $g = z(0)$ zu
+$z(2)$ geht durch 0, und ist somit nicht möglich. $g$ kann nicht der
+Mittelpunkt des Gebiets sein. Somit kann $\mathcal G$ nicht sternförmig sein.
+
+\subsection{geschlossene Wege}
+
+Damit das Integral auf allen geschlossenen Wegen gleich 0 ist, muss die
+Funktion eine Stammfunktion haben. Diese bestimmen wir mit
+Partialbruchzerlegung:
+\begin{gather*}
+	f(z) = \frac{1}{z(z-1)} = \frac{1}{z-1} - \frac 1z \\
+	F(z) = \ln\del{z-1} - \ln\del2
+\end{gather*}
+
+Der komplexe Logarithmus ist nur auf ein Vielfaches von $2 \pi \ii$ definiert.
+Da wir allerdings die Differenz betrachten und keine Punkte zwischen 0 und 1
+zulassen, gibt es nur Wege mit geradem Genus. Das Ergebnis $\oint \dif z / z =
+2 \pi \ii$ erhalten wir nur, wenn wir eine Fläche mit Genus 1 umspannen, was
+hier allerdings nicht geht.
+
+Somit haben wir eine Stammfunktion und es gilt $\oint \dif z \, f(z) = 0$ für
+alle erlaubten Wege.
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
