@@ -1,0 +1,365 @@
+% Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+%
+\documentclass[11pt, ngerman]{article}
+
+\usepackage[a4paper, left=3cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[activate]{pdfcprot}
+\usepackage[cdot, squaren]{SIunits}
+\usepackage[iso]{isodate}
+\usepackage[parfill]{parskip}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{color}
+\usepackage{commath}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{tikz}
+
+\usepackage[charter]{mathdesign}
+
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+
+\hypersetup{
+	breaklinks=false,
+	citecolor=darkgreen,
+	colorlinks=true,
+	linkcolor=black,
+	menucolor=black,
+	urlcolor=darkblue,
+}
+
+\setlength{\columnsep}{2cm}
+
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\asinh}{arsinh}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\diam}{diam}
+
+\newcommand{\dalambert}{\mathop{{}\Box}\nolimits}
+\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\emesswert}{\del{\messwert \pm \messwert}}
+\newcommand{\e}[1]{\cdot 10^{#1}}
+\newcommand{\fehlt}{\textcolor{red}{Hier fehlen noch Inhalte.}}
+\newcommand{\half}{\frac 12}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\laplace}{\mathop{{}\bigtriangleup}\nolimits}
+\newcommand{\messwert}{\textcolor{blue}{\square}}
+\newcommand{\punkte}{\textcolor{white}{xxxxx}}
+\newcommand{\tens}[1]{\boldsymbol{#1}}
+\newcommand{\vnabla}{\vec \nabla}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{2}
+
+\pagestyle{fancy}
+
+\fancyfoot[C]{\footnotesize{\thegruppe}}
+\fancyfoot[L]{\footnotesize{Ueding, Manz, Lemmer}}
+\fancyfoot[R]{\footnotesize{Seite \thepage}}
+\fancyhead[L]{\themodul{} -- Übung \theuebung}
+
+\setcounter{section}{0}
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}} \and Paul Manz \and Lino Lemmer}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c}
+		Aufgabe & \ref{sec:1} & \ref{sec:2} & \ref{sec:3} & \ref{sec:5} & $\Sigma$   \\
+		\hline
+		Punkte & \punkte / 4 & \punkte / 2 & \punkte / 4 & \punkte / 5 & \punkte / 15
+	\end{tabular}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                Fourierreihe                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fourierreihe}
+
+\label{sec:1}
+
+\subsection{Identität}
+
+Es soll die Fourierreihe von $f(x) = x$ bestimmt werden.
+
+Wegen der Punktsymmetrie der Funktion $f$ können nur Sinusterme vorkommen. Diese sind:
+\begin{align*}
+	b_n
+	&= \frac 1\pi \int_{-\pi}^\pi \dif x x \sin(nx) \\
+	&= \frac 1\pi \sbr{-\frac xn \cos(nx)}_{-\pi}^\pi + \frac 1\pi \underbrace{\int_{-\pi}^\pi \dif x \frac 1n \cos(nx)}_{=0} \\
+	&= - \frac{2 (-1)^n}{n}
+\end{align*}
+
+Die Fourierreihe ist also:
+\[ S[f](x) = - 2 \sum_{n = 1}^\infty \frac{(-1)^n}{n} \sin(nx) \]
+
+\subsection{Betragsfunktion}
+
+Es soll die Fourierreihe von $f(x) = \abs x$ bestimmt werden.
+
+Wegen der Symmetrie kommen hier nur Kosinusterme (der konstante Term zählt
+dazu) vor. Diese sind:
+\begin{align*}
+	a_n
+	&= \frac 1\pi \int_{-\pi}^\pi \dif x \abs x \cos(nx)
+	\intertext{Da der Kosinus und die Betragsfunktion beide gerade sind, ist deren Produkt es auch. Ich kann also das Integral auf dem halben Interval doppelt nehmen:}
+	&= \frac 2\pi \int_0^\pi \dif x \abs x \cos(nx) \\
+	&= \frac 2\pi \sbr{\frac xn \sin(nx)}_0^\pi - \frac 2\pi \int_0^\pi \dif x \frac 1n \sin(nx) \\
+	&= \frac2{\pi n^2} \sbr{\cos(nx)}_0^\pi \\
+	&= \frac{2}{\pi n^2} \del{(-1)^n -1}
+\end{align*}
+
+Außerdem für $n = 0$:
+\[ \frac 1\pi \int_{-\pi}^\pi \dif x \abs x = \frac 2\pi \int_0^\pi \dif x x = \pi \]
+
+Die Fourierreihe ist also:
+\[ S[f](x) = \frac \pi 2 + \frac 2 \pi \sum_{n = 1}^\infty \frac{1}{n^2} \del{(-1)^n -1} \cos(nx) \]
+
+Der Ausdruck $\del{(-1)^n -1}$ ist nur für ungerade $n$ von Null verschieden, so dass dies vereinfacht werden kann zu:
+\begin{equation}
+	\label{eq:reihe}
+	S[f](x) = \frac \pi 2 - \frac 4 \pi \sum_{n = 1}^\infty \frac{1}{\del{2n-1}^2}  \cos\del{\del{2n-1}x}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                    Reihe                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Reihe}
+
+\label{sec:2}
+
+\subsection{Reihe}
+
+Es soll gezeigt werden, dass gilt:
+\[
+	\sum_{n=1}^\infty \frac 1{\del{2n -1}^2} = \frac{\pi^2}8
+\]
+
+Ich setze in \eqref{eq:reihe} $x = 0$ ein. Somit werden alle Kosinusterme zu $1$. Die Reihe ist dann:
+\[
+	0 = \frac \pi 2 - \frac 4 \pi \sum_{n = 1}^\infty \frac{1}{\del{2n-1}^2}
+\]
+
+Dies kann ich umstellen zu:
+\[
+	\sum_{n=1}^\infty \frac 1{\del{2n -1}^2} = \frac{\pi^2}8
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Fourierreihe einer Parabel                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fourierreihe einer Parabel}
+
+\label{sec:3}
+
+Sei $a > 0$. Es soll die Fourierreihe für $f\colon [0, a] \mapsto \mathbb R; x
+\mapsto x(x-a)$ bestimmt werden, wobei diese Funktion gerade und ungerade
+fortgesetzt werden soll.
+
+Ich führe eine neue Koordinate $\tau$ ein, damit die Funktion genau $2 \pi$ periodisch ist, und nicht $2 a$ symmetrisch:
+\[ \tau := \frac \pi a x \]
+
+Die Fourierreihe ist dann allerdings in $\tau$ und nicht in $x$.
+
+\subsection{gerade Fortsetzung}
+
+Die gerade Fortsetzung stelle ich mir wie in Abbildung \ref{fig:gerade}
+gezeigt vor.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[samples=100]
+		\draw (3.141, -0.1) -- ++(0, 0.2) node[above] {$a$};
+		\draw (-3.141, -0.1) -- ++(0, 0.2) node[above] {$-a$};
+		\draw (6.262, -0.1) -- ++(0, 0.2) node[above] {$2a$};
+		\draw[thin, ->] (-3.5, 0) -- (6.5, 0) node[right] {$x$};
+		\draw[thin, ->] (0, -2.7) -- (0, 0.5) node[above] {$f(x)$};
+		\clip (-3.141, -2.5) rectangle (6.282, 0);
+		\draw[thick, dashed, domain=-3.141:0] plot (\x, {(\x--3.141) * ((\x--3.141) - 3.141)});
+		\draw[thick, domain=0:3.141] plot (\x, {(\x) * ((\x) - 3.141)});
+		\draw[thick, dashed, domain=3.141:6.282] plot (\x, {(\x-3.141) * ((\x-3.141) - 3.141)});
+	\end{tikzpicture}
+	\caption{gerade Fortsetzung der Parabel}
+	\label{fig:gerade}
+\end{figure}
+
+Wegen der Achsensymmetrie können hier nur gerade Terme vorkommen. Diese sind für $n > 0$:
+\begin{align*}
+	a_n &= \frac 2\pi \int_0^\pi \dif \tau \del{\del{\frac a\pi \tau}^2 - \frac{a^2}\pi \tau} \cos\del{n \tau} \\
+		   &= \frac 2\pi \underbrace{\sbr{\frac 1n \sin\del{n\tau} \del{\del{\frac a\pi}^2 - \frac{a^2}\pi \tau}}_0^\pi}_{=0} - \frac 2\pi \int_0^\pi \dif \tau 2 \del{\frac{a^2}{\pi^2} \tau - \frac{a^2}\pi \frac 1n \sin\del{n \tau}} \\
+		   &= \frac{4}{n^2\pi} \sbr{\frac{a^2}{\pi^2}\tau - \frac{a^2}\pi \cos\del{n\tau}}_0^\pi + \frac{4}{n^2 \pi} \underbrace{\int_0^\pi \dif \tau \frac{a^2}{\pi^2} \cos\del{n\tau}}_{=0} \\
+		   &= \frac{4a^2}{n^2\pi^2} \sbr{\frac \tau\pi - \cos\del{n\tau}}_0^\pi \\
+		   &= \frac{4a^2}{n^2\pi^2} \del{1 - (-1)^n}
+\end{align*}
+
+Und für $n = 0$:
+\begin{align*}
+	a_0
+	&= \frac 2\pi \int_0^\pi \dif \tau \del{\del{\frac a\pi \tau}^2 - \frac{a^2}\pi \tau} \cos\del{0 \tau} \\
+	&= \frac 2\pi \int_0^\pi \dif \tau \del{\del{\frac a\pi \tau}^2 - \frac{a^2}\pi \tau} \\
+	&= \frac 2\pi \int_0^\pi \dif \tau \del{\frac a\pi \tau}^2 - \frac 2\pi \int_0^\pi \dif \tau \frac{a^2}\pi \tau \\
+	&= \sbr{\frac{2a^2}{3\pi^3} \tau^3 - \frac{a^2}{\pi^2} \tau^2}_0^\pi \\
+	&= \frac{2}{3}a^2 - a^2 \\
+	&= -\frac{1}{3}a^2
+\end{align*}
+
+Somit ist die Fourierreihe:
+\[
+	S[f](x) = -\frac13 a^2 + \sum_{n = 1}^\infty \frac{4a^2}{n^2\pi^2} \cos\del{\frac{\pi n}{a} x}
+\]
+
+\subsection{ungerade Fortsetzung}
+
+Die ungerade Fortsetzung stelle ich mir wie in Abbildung \ref{fig:ungerade}
+gezeigt vor.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[samples=100]
+		\draw (-3.141, 0.1) -- ++(0, -0.2) node[below] {$-a$};
+		\draw (3.141, 0.1) -- ++(0, -0.2) node[below right] {$a$};
+		\draw (6.262, 0.1) -- ++(0, -0.2) node[below] {$2a$};
+		\draw[thin, ->] (-3.5, 0) -- (6.5, 0) node[right] {$x$};
+		\draw[thin, ->] (0, -2.7) -- (0, 2.7) node[above] {$f(x)$};
+		\clip (-3.141, -2.5) rectangle (6.282, 2.5);
+		\draw[thick, dashed, domain=-3.141:0] plot (\x, {-(\x--3.141) * ((\x--3.141) - 3.141)});
+		\draw[thick, domain=0:3.141] plot (\x, {(\x) * ((\x) - 3.141)});
+		\draw[thick, dashed, domain=3.141:6.282] plot (\x, {-(\x-3.141) * ((\x-3.141) - 3.141)});
+	\end{tikzpicture}
+	\caption{ungerade Fortsetzung der Parabel}
+	\label{fig:ungerade}
+\end{figure}
+
+Durch die Symmetrie können hier nur Sinusterme vorkommen. Die Vorfaktoren wären, wenn die Funktion schon periodisch wäre:
+\begin{align*}
+	b_n
+	&= \frac 1\pi \int_{-\pi}^\pi \dif \tau \del{\del{\frac a\pi \tau}^2 - \frac{a^2}\pi \tau} \sin\del{n \tau}
+	\intertext{Dabei sind die Integralgrenzen so nicht korrekt. Das Problem ist, dass außerhalb von $[0, \pi]$ die Parabel sich nicht wiederholt. Da die widerholte Parabel und der Sinus ungerade sind, kann ich einfach die Hälfte des Intervals nehmen und dafür das Integral verdoppelt. Nun ist es korrekt:}
+	&= \frac 2\pi \int_0^\pi \dif \tau \del{\del{\frac a\pi \tau}^2 - \frac{a^2}\pi \tau} \sin\del{n \tau}
+	\intertext{Jetzt wende ich partielle Integration an.}
+	&= \frac 2\pi \del{ \underbrace{\sbr{\del{\del{\frac a\pi \tau}^2 - \frac{a^2}\pi \tau}\del{-\frac{1}{n} \cos\del{n \tau}}}_0^\pi}_{=0} -\int_0^\pi \dif \tau \del{2 \frac{a^2}{\pi^2} \tau - \frac{a^2}\pi}\del{- \frac{1}{n}\cos\del{n \tau}}}
+	\intertext{Der erste Teil fiel weg. Nun wende ich erneut partielle Integration an.}
+	&= \frac 2\pi \del{ \underbrace{\sbr{\del{2 \frac{a^2}{\pi^2} \tau - \frac{a^2}\pi}\del{- \frac{1}{n^2}\sin\del{n \tau}}}_0^\pi}_{=0} - 2 \int_0^\pi \dif \tau \frac{a^2}{\pi^2n^2}\del{\sin\del{n \tau}}} \\
+	&= \frac{4 a^2}{\pi^3 n^3} \del{\del{-1}^n - 1}
+\end{align*}
+
+Somit ist die Fourierreihe:
+\[
+	S[f](\tau) =
+	\sum_{n=1}^\infty \frac{4 a^2}{\pi^3 n^3} \del{\del{-1}^n - 1} \sin\del{\frac{\pi n}{a} x}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            Fouriertransformation                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+
+\section{Fouriertransformation}
+
+\label{sec:5}
+
+\subsection{Treppenfunktion}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[scale=2]
+		\draw[thin, ->] (-1, 0) -- (1, 0) node[right] {$x$};
+		\draw[thin, ->] (0, 0) -- (0, 1.2) node[above] {$\mathcal N_1(x)$};
+		\draw[thick] (-1, 0) -- ++(0.5, 0);
+		\draw[thick] (0.5, 0) -- ++(0.5, 0);
+		\draw[thick] (-0.5, 1) -- ++(1, 0);
+		\draw (0.5, 0.1) -- ++(0, -0.2) node[below] {$0.5$};
+	\end{tikzpicture}
+	\caption{Treppenfunktion}
+	\label{fig:treppenfunktion}
+\end{figure}
+
+Gegeben ist die Funktion $\mathcal N_1$ (Plot in Abbildung
+\ref{fig:treppenfunktion}), deren Fouriertransformierte
+$\widehat{\mathcal{N}}_1$ berechnet werden soll:
+\[ \mathcal N_1(x) = \begin{cases}
+		1 & |x| \leq \frac 12 \\
+		0 & |x| > \frac 12
+\end{cases} \]
+
+Die Fouriertransformierte ist dann:
+\begin{align*}
+	\hat f(\xi)
+	&= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \dif x \mathcal N_1(x) \exp\del{-\ii x \xi} \\
+	\intertext{Dabei ist das Integral außerhalb von $\intcc{-\frac 12, \frac 12}$ 0. Daher kann ich es auch schreiben als:}
+	&= \frac{1}{\sqrt{2\pi}} \int_{-\frac 12}^{\frac 12} \dif x \exp\del{-\ii x \xi} \\
+	&= \frac{1}{\sqrt{2\pi}} \sbr{\frac{\ii}{\xi} \exp\del{-\ii x \xi}}_{-\half}^\half \\
+	&= \sqrt{\frac 2\pi} \frac 1\xi \sin\del{\frac 12 \xi}
+\end{align*}
+
+\subsection{Faltung}
+
+Berechnet werden soll die gefaltete Funktion $\mathcal N_2 := \mathcal N_1 *
+\mathcal N_1$. Außerdem soll die Fouriertransformierte dieser gefalteten
+Funktion berechnet werden.
+
+Die gefaltete Funktion ist durch Geometrie zu bestimmen. Wenn die Funktionen
+genau überlappen, muss $1$ herauskommen. Wenn das Zentrum der einen Funktion um
+mehr als $\pm 1$ vom Ursprung entfernt ist, muss $0$ herauskommen. Dazwischen
+ist es linear in $x$. Ich erhalte:
+\[
+	\mathcal N_2(x) = \begin{cases}
+		1-x & 0 < x < 1 \\
+		1+x & -1 < x \leq 0 \\
+		  0 & \text{sonst}
+	\end{cases}
+\]
+
+Die Fouriertransformierte davon ist kann ich bestimmen, in dem ich die in
+Stücken gegebene Funktion wie oben in zwei Integrale aufteile und diese
+integriere. Als Ergebnis erhalte ich:
+\[
+	\widehat{\mathcal N}_2 = \frac{2 - 2 \cos\del\xi}{\sqrt{2\pi} \xi^2}
+\]
+
+Eigentlich müsste gelten:
+\[
+	\mathcal N_2 = \mathcal N_1 * \mathcal N_1
+	, \quad
+	\widehat{\mathcal N}_2 = \widehat{\mathcal N}_1 \widehat{\mathcal N}_1
+\]
+
+Numerische Faltungen einer $k$-Dimensionalen Funktion (diskret mit $n$
+Datenpunkten), für eine Mustererkennung zum Beispiel, haben naiv implementiert
+eine Komplexität von $\mathcal O\del{n^{2k}}$. Die diskrete
+Fouriertransformation benötigt allerdings nur $\mathcal O\del{n^k \ln n}$. Die
+Multiplikation ist nur $\mathcal O(n^k)$ und somit zu vernachlässigen. Somit
+ist eine Faltung, die mit einer Fouriertransformation implementiert ist,
+deutlich effizienter. \cite{mathworld-convolution_theorem}
+
+\bibliography{../../zentrale_BibTeX/Central}
+\bibliographystyle{plain}
+
+\end{document}
