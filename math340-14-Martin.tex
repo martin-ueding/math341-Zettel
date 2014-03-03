@@ -1,0 +1,334 @@
+% Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+%
+\input{header.tex}
+
+\usepackage{scrpage2}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\newcommand{\themodul}{math340}
+\newcommand{\thegruppe}{Gruppe 16 -- Malte Lackmann}
+\newcommand{\theuebung}{14}
+
+\pagestyle{scrheadings}
+
+\automark{section}
+\cfoot{\footnotesize{\thegruppe}}
+\chead{}
+\ifoot{\footnotesize{Ueding, Manz, Lemmer}}
+\ihead{\themodul{} -- Übung \theuebung}
+\ofoot{\footnotesize{Seite \thepage\ / \pageref{LastPage}}}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+
+\def\thesection{\theuebung.\arabic{section}}
+\def\thesubsection{\thesection\alph{subsection}}
+
+\title{\themodul{} -- Übung \theuebung \\ \vspace{0.5cm} \large{\thegruppe}}
+
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@uni-bonn.de}{mu@uni-bonn.de}}
+	\and
+	Paul Manz
+	\and
+	Lino Lemmer
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c|c|c|c}
+		Aufgabe
+		& \ref 1
+		& \ref 2
+		& \ref 3
+		& \ref 4
+		& $\sum$ \\
+		\hline
+		Punkte
+		& \punkte / 4
+		& \punkte / 4
+		& \punkte / 4
+		& \punkte / 2
+		& \punkte / 14
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Hauptzweig des Logarithmus                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hauptzweig des Logarithmus}
+\label 1
+
+\subsection{$z_0 = 1$}
+
+Wir entwickeln um $z_0 = 1$. Die Ableitungen sind, wie im Reellen:
+\[
+	f^{(n)} = (-1)^{n+1} x^{-n}
+\]
+
+Die Reihe ist mit $f^{(n)}(1) = (-1)^{n+1}$:
+\[
+	f(z) = \sum_{n=0}^\infty \frac{(-1)^{n+1}}{n!} \del{z - z_0}^n
+\]
+
+Diese Reihe konvergiert sogar absolut für alle $z$.
+
+\subsection{$z_0 = -1 + \iup$}
+
+Wir benutzen die gleichen Ableitungen, werten allerdings an $z_0 = -1 + \iup$
+aus.
+\[
+	f(z) = -\sum_{n=0}^\infty \del{\frac{1}{1 - \iup}}^{n} \frac{1}{n!} \del{z - z_0}^n
+\]
+
+Auch diese Reihe konvergiert absolut für alle $z$, also auch in $-1-\epsilon\iup$.
+
+Da $-1+\iup$ und $-1-\epsilon\iup$ allerdings auf zwei verschiedenen Ebenen der
+Riemann'schen Fläche liegen, weichen die Funktionswerte um $2\piup\iup$
+voneinander ab.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            holomorphe Funktionen                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{section}
+\section{holomorphe Funktionen}
+\label 2
+
+\stepcounter{subsection}
+\subsection{zweite Funktion}
+
+Wir setzen $z = \frac 1n$ und erhalten:
+\[
+	f(z)
+	= \frac{1}{\frac1{z^2}-1}
+	= \frac{z^2}{1 - z^2}
+\]
+
+Diese Funktion ist an den Stellen $z = \pm 1$ nicht definiert. Auf $B_1(0)$
+gibt es allerdings keine weiteren Definitionslücken. Die Funktion ist auf
+dieser Kreisscheibe holomorph. Wenn wir $n > 1$ voraussetzen, gilt die
+Identität $f(1/n) = \del{n^2 - 1}^{-1}$ für alle $n$.
+
+\stepcounter{subsection}
+\subsection{vierte Funktion}
+
+Die Funktion $f \equiv 0$ erfüllt die Bedingung $\abs{f(1/n)} \leq \eup^{-n}$,
+wenn auch nicht besonders kreativ.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                        Entwicklung in Laurentreihen                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Entwicklung in Laurentreihen}
+\label 3
+
+\subsection{erste Funktion}
+
+Wir führen eine Partialbruchzerlegung durch:
+\[
+	f(z) = \frac3{(z+1)(z-2)} = -\frac1{z+1} + \frac1{z-2}
+\]
+
+Wir beginnen mit dem ersten Summanden und schreiben diesen als geometrische
+Reihe:
+\[
+	-\frac1{z+1}
+	=
+	- \frac 1z \frac1{1+\frac 1z}
+	=
+	- \frac 1z \sum_{k=0}^\infty \del{\frac 1z}^k
+	- \sum_{k=1}^\infty \del{\frac 1z}^k
+\]
+
+Dabei müssen wir als Einschränkung $\abs z > 1$ einfügen, da die Reihe sonst nicht konvergiert.
+
+Den zweiten Summanden schreiben wir in eine normale Taylorreihe, da wir hier
+eine Konvergenzobergrenze erhalten möchten. Nur so können wir den
+Konvergenzring zwischen 1 und 2 erreichen. Würden wir hier ebenfalls in eine
+geometrische Reihe entwickeln\footnote{
+\[
+	\frac1{z-2}
+	=
+	\frac 1z \frac1{1-\frac2z}
+	=
+	\frac 1z \sum_{k=0}^\infty \del{\frac2z}^k
+	=
+	\frac 12 \sum_{k=1}^\infty \del{\frac2z}^{k}
+\]
+}, hätten wir im Konvergenzring $B_{2, \infty}(0)$ entwickelt.
+
+Wir entwickeln in eine Reihe:
+\[
+	g(z) = \frac{1}{z-2}
+	\implies
+	g^{(n)}(z) = (-1)^n \frac{1}{(z-2)^n}
+	\implies
+	g^{(n)}(0) = \del{\half}^n
+	\implies
+	g(z) = \sum_{n=0}^\infty \del{\half}^n z^n
+\]
+
+Diese Reihe konvergiert für alle $\abs z < 2$.
+
+Beide Summen schreiben wir zusammen:
+\[
+	\frac 12 \sum_{k=1}^\infty \del{\frac2z}^{k}
+	+ \sum_{n=0}^\infty \del{\half}^n z^n
+	=
+	\frac 12 \sum_{n=-\infty}^{-1} \del{\half}^{n} z^n
+	+ \sum_{n=0}^\infty \del{\half}^n z^n
+\]
+
+\subsection{zweite Funktion}
+
+Es soll
+\[
+	f(z) = \frac{4z-z^2}{\del{z^2-4}\del{z+1}}
+\]
+entwickelt werden. Wir führen eine Partialbruchzerlegung durch:
+\[
+	f(z) = - \frac32\frac1{z+2} + \frac13\frac1{z-2} - \frac53\frac1{z+1}
+\]
+
+Zu den einzelnen Summanden bilden wir die Maclaurinreihe:
+\begin{enumerate}
+	\item
+		\[
+			- \frac32\frac1{z+2}
+			= - \frac 32 \sum_{n=0}^\infty \del{-\frac 12}^n z^n
+		\]
+
+	\item
+		\[
+			\frac13\frac1{z-2}
+			= \frac 13 \sum_{n=0}^\infty \del{\frac 12}^n z^n
+		\]
+
+	\item
+		\[
+			\frac53\frac1{z+1}
+			= - \frac 53 \sum_{n=0}^\infty \del{-1}^n z^n
+		\]
+\end{enumerate}
+
+Zu jedem der Summanden bilden wir außerdem noch eine Art geometrische Reihe:
+\begin{enumerate}
+	\item
+		\[
+			- \frac 32 \frac{1}{z+2}
+			= - \frac 32 \frac 1z \frac{1}{1+\frac 2z}
+			= - \frac 32 \frac 1z \sum_{n=0}^\infty \del{-\frac 2z}^n
+			= 3 \sum_{n=1}^\infty \del{-\frac 2z}^n
+			= 3 \sum_{n=-\infty}^{-1} \del{-\frac 12}^n z^n
+		\]
+
+	\item
+		\[
+			\frac 13 \frac{1}{z-2}
+			= \frac 13 \frac 1z \sum_{n=0}^{\infty} \del{\frac 2z}^n
+			= \frac 16 \frac 1z \sum_{n=-\infty}^{-1} \del{\half}^n z^n
+		\]
+
+	\item
+		\[
+			- \frac 53 \frac{1}{z+1}
+			= - \frac 53 \frac 1z \sum_{n=0}^\infty \del{-\frac 1z}^n
+			= \frac 53 \sum_{n=1}^\infty \del{-\frac 1z}^n
+			= \frac 53 \sum_{n=-\infty}^{-1} (-1)^n z^n
+		\]
+\end{enumerate}
+
+Nun müssen wir diese Teile geschickt kombinieren, je nach gewünschtem
+Konvergenzring. Wir beginnen mit $B_{1,2}(0)$. Dazu brauchen wir die geometrische Reihe des Termes mit Polstelle bei $\abs z = 1$ und die Maclaurinreihen der Terme mit Polstelle bei $\abs z = 2$. Zusammen also:
+\[
+	f(z) \restriction B_{1,2}(0)
+	=
+	- \frac 32 \sum_{n=0}^\infty \del{-\frac 12}^n z^n
+	+ \frac 13 \sum_{n=0}^\infty \del{\frac 12}^n z^n
+	+ \frac 53 \sum_{n=-\infty}^{-1} (-1)^n z^n
+\]
+
+Für $B_{2,\infty}(0)$ benötigen wir nur die geometrischen Reihen von allen
+Summanden, da nur diese für beliebig große Summanden gelten:
+\[
+	f(z) \restriction B_{2,\infty}(0)
+	=
+	3 \sum_{n=-\infty}^{-1} \del{-\frac 12}^n z^n
+	+ \frac 16 \frac 1z \sum_{n=-\infty}^{-1} \del{\half}^n z^n
+	+ \frac 53 \sum_{n=-\infty}^{-1} (-1)^n z^n
+\]
+
+Und für $B_{0,1}(0)$ brauchen wir nur die Maclaurinreihen, da diese nur für
+kleine $\abs z$ gültig sind:
+\[
+	f(z) \restriction B_{0,1}(0)
+	=
+	- \frac 32 \sum_{n=0}^\infty \del{-\frac 12}^n z^n
+	+ \frac 13 \sum_{n=0}^\infty \del{\frac 12}^n z^n
+	- \frac 53 \sum_{n=0}^\infty \del{-1}^n z^n
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             Konvergenzbereiche                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Konvergenzbereiche}
+\label 4
+
+\subsection{erste Reihe}
+
+Wir zerlegen die Reihe in positiven und negativen Teil:
+\[
+	\sum_{k=0}^\infty \frac{z^k}{k!} + \sum_{k=-\infty}^{-1} \frac{z^k}{\abs k!}
+\]
+
+Der Konvergenzradius $R$ der ersten Reihe ist $\infty$, da es die Exponentialfunktion ist:
+\[
+	\frac 1R
+	= \limsup_{k\to\infty} \sqrt[k]{\frac1{k!}}
+	= 0
+\]
+
+Für den zweiten Summanden ist der Konvergenzradius $r = 0$:
+\[
+	r
+	= \limsup_{k\to\infty} \sqrt[k]{\frac1{k!}}
+	= 0
+\]
+
+Da wir nur innerhalb des Kreisrings sicher Konvergenz haben, muss $0 < \abs z <
+\infty$ gelten.
+
+\subsection{zweite Reihe}
+
+Die Koeffizienten der zweiten Reihe sind:
+\[
+	a_k = 2 \sech(ak)
+\]
+
+Wir bestimmen die Konvergenzradien:
+\[
+	\frac 1R
+	= \limsup_{k\to\infty} {\sqrt[k]{\eup^{ak} + \eup^{-ak}}}
+	\geq \limsup_{k\to\infty} {\sqrt[k]{\eup^{ak}}}
+	= \eup^{a}
+\]
+
+Analog für $r$. Wir haben $r \geq \eup^a$ als auch $R \leq \eup^{-a}$. Die $z$, für die die Reihe konvergiert, sind also:
+\[
+	\eup^a < \abs z < \eup^{-a}
+\]
+
+%\bibliography{../../zentrale_BibTeX/Central}
+%\bibliographystyle{plain}
+
+\end{document}
+
+% vim: spell spelllang=de
